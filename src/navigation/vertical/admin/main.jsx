@@ -1,6 +1,6 @@
 import { Calendar } from "react-iconly";
 import { BsTable } from "react-icons/bs";
-const mains = [
+const main = [
   {
     header: "MAIN",
   },
@@ -8,13 +8,13 @@ const mains = [
     id: "apps-calendar",
     title: "Calendar",
     icon: <Calendar set="curved" />,
-    navLink: "/mains/calendar",
+    navLink: "/admin/main/calendar",
   },
   {
     id: "schedule",
     title: "Schedule",
     icon: <BsTable set="curved" />,
-    navLink: "/mains/schedule",
+    navLink: "/admin/main/schedule",
   },
 ];
-export default mains;
+export default main;

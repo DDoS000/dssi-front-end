@@ -13,16 +13,22 @@ export default function Contact() {
       <Route exact path="/manager/user">
         <Table />
       </Route>
+      <Route exact path="/admin/manager/user">
+        <Table />
+      </Route>
 
-      {
-        !selectedUser ? (
-          <Redirect to="/manager/user" />
-        ) : (
+      {!selectedUser ? (
+        <Redirect to="/manager/user" />
+      ) : (
+        <>
+          <Route path="/admin/manager/user/user-detail">
+            <Detail selectedUser={selectedUser} />
+          </Route>
           <Route path="/manager/user/user-detail">
             <Detail selectedUser={selectedUser} />
           </Route>
-        )
-      }
+        </>
+      )}
     </Switch>
   );
 }

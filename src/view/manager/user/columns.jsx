@@ -9,13 +9,14 @@ import { RiErrorWarningLine } from "react-icons/ri";
 
 // Popconfirm
 function confirm(dataId) {
-  store.dispatch(deleteUser(dataId))
+  store.dispatch(deleteUser(dataId));
 }
 
 export const columns = [
   {
     title: "",
     dataIndex: "avatar",
+    width: "5%",
     render: (dataIndex) => {
       let imageSplit;
 
@@ -28,55 +29,44 @@ export const columns = [
           onClick={() => store.dispatch(getUser(dataIndex[0]))}
           to={`/apps/contact/contact-detail/${dataIndex[0]}`}
         >
-          {
-            (dataIndex[1] != null) ? (
-              (imageSplit[imageSplit.length - 1] == "png" || imageSplit[imageSplit.length - 1] == "jpg" || imageSplit[imageSplit.length - 1] == "svg") ? (
-                <Avatar src={dataIndex[1]} size={48} />
-              ) : (
-                <Avatar size={48}>{dataIndex[1].split(" ")[0][0].toUpperCase() + "" + dataIndex[1].split(" ")[1][0].toUpperCase()}</Avatar>
-              )
-            ) : (
-              <Avatar
-                size={48}
-                icon={<User set="curved" className="hp-text-align-center" />}
-              />
-            )
-          }
+          <Avatar
+            size={48}
+            icon={<User set="curved" className="hp-text-align-center" />}
+          />
         </Link>
       );
     },
   },
   {
+    title: "Username",
+    dataIndex: "username",
+    width: "25%",
+  },
+  {
     title: "Name",
-    dataIndex: "fullName",
+    dataIndex: "name",
+    width: "25%",
   },
   {
     title: "Role",
     dataIndex: "role",
-  },
-  {
-    title: "Email",
-    dataIndex: "email",
-  },
-  {
-    title: "Status",
-    dataIndex: "status",
+    width: "15%",
     render: (dataIndex) => {
-      if (dataIndex === "inactive") {
+      if (dataIndex === "admin") {
         return <Tag color="red">{dataIndex}</Tag>;
-      } else if (dataIndex === "pending") {
-        return <Tag color="yellow">{dataIndex}</Tag>;
-      } else if (dataIndex === "active") {
+      } else if (dataIndex === "student") {
         return <Tag color="green">{dataIndex}</Tag>;
       }
     },
   },
   {
-    title: "Phone",
-    dataIndex: "contact",
+    title: "Email",
+    dataIndex: "email",
+    width: "20%",
   },
   {
     dataIndex: "avatar",
+    width: "10%",
     render: (dataIndex) => (
       <Popconfirm
         placement="topLeft"

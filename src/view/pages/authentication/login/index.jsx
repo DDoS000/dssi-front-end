@@ -62,7 +62,7 @@ export default function Login() {
               </Form.Item>
             </Form>
 
-            <Col className="hp-form-info">
+            {/* <Col className="hp-form-info">
               <span className="hp-text-color-black-80 hp-text-color-dark-40 hp-caption hp-mr-4">
                 Don’t you have an account?
               </span>
@@ -73,9 +73,9 @@ export default function Login() {
               >
                 Create an account
               </Link>
-            </Col>
+            </Col> */}
 
-            <Col className="hp-or-line hp-text-center hp-mt-32">
+            {/* <Col className="hp-or-line hp-text-center hp-mt-32">
               <span className="hp-caption hp-text-color-black-80 hp-text-color-dark-30 hp-px-16 hp-bg-color-black-0 hp-bg-color-dark-100">
                 Or
               </span>
@@ -124,7 +124,7 @@ export default function Login() {
               >
                 Continue with Facebook account
               </Button>
-            </Col>
+            </Col> */}
 
             <Col className="hp-other-links hp-mt-24">
               <a href="#" className="hp-text-color-black-80 hp-text-color-dark-40">

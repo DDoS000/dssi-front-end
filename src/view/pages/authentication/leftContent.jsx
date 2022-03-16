@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 
 import { Row, Col } from "antd";
 
-import bg from "../../../assets/images/pages/authentication/authentication-bg.svg";
-import bgDark from "../../../assets/images/pages/authentication/authentication-bg-dark.svg";
+import bg from "../../../assets/images/pages/authentication/authentication-login-bg.svg";
+import bgDark from "../../../assets/images/pages/authentication/authentication-login-bg.svg";
 import logo from "../../../assets/images/logo/logo-vector-blue.svg";
 import logoDark from "../../../assets/images/logo/logo-vector.svg";
 
@@ -23,7 +23,7 @@ export default function LeftContent() {
         <Col span={24}>
           <Row align="middle" justify="center" className="hp-h-100">
             <Col md={20} span={24} className="hp-bg-item hp-text-center hp-mb-md-32">
-              <img src={theme == "light" ? bg : bgDark} alt="Background Image" />
+              <img src={theme == "light" ? bg : bgDark} style={{width:"90%"}} alt="Background Image" />
             </Col>
 
             <Col xl={18} span={24} className="hp-text-item hp-text-center">

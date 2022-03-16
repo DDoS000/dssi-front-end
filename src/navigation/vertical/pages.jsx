@@ -151,7 +151,7 @@ const pages = [
         ],
     },
     {
-        id: "faq",
+        id: "faqs",
         title: "FAQ",
         icon: <InfoSquare set="curved" className="remix-icon" />,
         navLink: "/pages/faq",

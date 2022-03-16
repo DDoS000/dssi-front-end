@@ -47,11 +47,10 @@ export default function UsersList() {
     data.push({
       key: i,
       avatar: [store.data[i].id, store.data[i].avatar],
-      fullName: store.data[i].fullName,
+      username: store.data[i].username,
+      name: store.data[i].name,
       role: store.data[i].role,
-      contact: store.data[i].contact,
       email: store.data[i].email,
-      status: store.data[i].status,
     });
   }
 
@@ -60,8 +59,8 @@ export default function UsersList() {
       <div className="hp-mb-32">
         <Row gutter={[32, 32]} justify="space-between">
           <BreadCrumbs
-            breadCrumbParent="Applications"
-            breadCrumbActive="Contact"
+            breadCrumbParent="Manager"
+            breadCrumbActive="User"
           />
 
           <Col md={15} span={24}>

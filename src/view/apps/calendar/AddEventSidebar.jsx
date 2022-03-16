@@ -5,7 +5,8 @@ import "flatpickr/dist/themes/light.css";
 import Flatpickr from "react-flatpickr";
 import { useForm } from "react-hook-form";
 import { RiCloseFill } from "react-icons/ri";
-import { Button, Input, Form, Modal, Badge, Row, Col } from "antd";
+import { DatePicker, Button, Input, Form, Modal, Badge, Row, Col } from "antd";
+import moment from "moment";
 
 export const isObjEmpty = (obj) => Object.keys(obj).length === 0;
 
@@ -282,7 +283,7 @@ const AddEventSidebar = (props) => {
         </Form.Item>
 
         <Form.Item label="From :">
-          <Flatpickr
+          {/* <Flatpickr
             required
             id="startDate"
             name="startDate"
@@ -294,11 +295,23 @@ const AddEventSidebar = (props) => {
               dateFormat: "d M Y - H:i K",
               static: true,
             }}
+          /> */}
+          <DatePicker
+            required
+            id="startDate"
+            name="startDate"
+            style={{ width: "100%" }}
+            className="hp-mb-16 hp-mr-16"
+            onChange={(date) => setStartPicker(date)}
+            defaultValue={moment(startPicker, "d M Y - H:i K")}
+            format="YYYY-MM-DD HH:mm"
+            renderExtraFooter={() => "extra footer"}
+            showTime={{ format: 'HH:mm' }}
           />
         </Form.Item>
 
         <Form.Item label="To :">
-          <Flatpickr
+          {/* <Flatpickr
             required
             id="endDate"
             name="endDate"
@@ -310,6 +323,18 @@ const AddEventSidebar = (props) => {
               dateFormat: "d M Y - H:i K",
               static: true,
             }}
+          /> */}
+          <DatePicker
+            required
+            id="endDate"
+            name="endDate"
+            style={{ width: "100%" }}
+            className="hp-mb-16 hp-mr-16"
+            onChange={(date) => setEndPicker(date)}
+            defaultValue={moment(endPicker, "d M Y - H:i K")}
+            format="YYYY-MM-DD HH:mm"
+            renderExtraFooter={() => "extra footer"}
+            showTime={{ format: 'HH:mm' }}
           />
         </Form.Item>
 

@@ -26,6 +26,7 @@ import fileFormat from "../../../assets/files/format-create-user.xlsx";
 // Export data
 import ExcelExport from "export-xlsx";
 import { SETTINGS_FOR_EXPORT } from "./setting.jsx";
+import * as XLSX from 'xlsx/xlsx.mjs';
 
 export default function AddNewUser({ open, toggleSidebar }) {
   const { Option } = Select;
@@ -310,16 +311,40 @@ export default function AddNewUser({ open, toggleSidebar }) {
   // Upload File
   const props = {
     maxCount: 1,
+    accept:".xlsx",
+    showUploadList : false,
     name: "file",
     headers: {
       authorization: 'authorization-text',
     },
     beforeUpload: file => {
-      const isXLSX = file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
-      if (!isXLSX) {
-        message.error(`${file.name} is not a excel file`);
-      }
-      return isXLSX || Upload.LIST_IGNORE;
+      const reader = new FileReader();
+
+    reader.onload = function (e) {
+        var data = e.target.result;
+        let readedData = XLSX.read(data, {type: 'binary'});
+        const wsname = readedData.SheetNames[0];
+        const ws = readedData.Sheets[wsname];
+
+        /* Convert array to json*/
+        const dataParse = XLSX.utils.sheet_to_json(ws, {header:1});
+        let last_data = []
+        let rount = 0
+        for (const datas of dataParse.slice(1)){
+          last_data.push({
+            key: rount++,
+            username: datas[0],
+            name: datas[1],
+            role: datas[2],
+            email: datas[3],
+          });
+        }
+        setData(last_data)
+    };
+    reader.readAsBinaryString(file)
+
+      // Prevent upload
+      return false;
     },
     onChange(info) {
       if (info.file.status !== "uploading") {
@@ -414,7 +439,7 @@ export default function AddNewUser({ open, toggleSidebar }) {
 
             <Col span={24}>
               <Button type="primary" htmlType="submit" block>
-                Add
+                Save
               </Button>
             </Col>
           </Row>

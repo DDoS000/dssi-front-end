@@ -1,12 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Redirect } from 'react-router-dom';
 
 import { Row, Col, Form, Input, Button, Checkbox } from "antd";
 import { RiFacebookFill } from "react-icons/ri";
 
 import LeftContent from "../leftContent";
 
-export default function Login() {
+import { useSelector, useDispatch } from "react-redux";
+import { login } from "../../../../redux/auth/authActions";
+
+export default function Login(props) {
+  const [loading, setLoading] = useState(false);
+  const { isLoggedIn } = useSelector(state => state.auth)
+  const { message } = useSelector(state => state.message);
+  const dispatch = useDispatch()
+
+  if (isLoggedIn) {
+    return <Redirect to="/" />;
+  }
+
+  const onFinish = (values) => {
+    console.log("login:", values);
+    setLoading(true);
+    dispatch(login(values.username, values.password))
+    .then(() => {
+      props.history.push("/");
+      window.location.reload();
+    })
+    .catch(() => {
+      setLoading(false);
+    });
+  };
+
   return (
     <Row gutter={[32, 0]} className="hp-authentication-page">
       <LeftContent />
@@ -31,12 +57,27 @@ export default function Login() {
               name="basic"
               initialValues={{ remember: true }}
               className="hp-mt-sm-16 hp-mt-32"
+              onFinish={onFinish}
             >
-              <Form.Item label="Username :" className="hp-mb-16">
+              <Form.Item
+                name="username"
+                label="Username :"
+                className="hp-mb-16"
+                rules={[
+                  { required: true, message: "Please input your username!" },
+                ]}
+              >
                 <Input id="error" />
               </Form.Item>
 
-              <Form.Item label="Password :" className="hp-mb-8">
+              <Form.Item
+                name="password"
+                label="Password :"
+                className="hp-mb-8"
+                rules={[
+                  { required: true, message: "Please input your password!" },
+                ]}
+              >
                 <Input.Password id="warning2" />
               </Form.Item>
 
@@ -54,11 +95,9 @@ export default function Login() {
               </Row>
 
               <Form.Item className="hp-mt-16 hp-mb-8">
-                <Link to="/">
-                  <Button block type="primary" htmlType="submit">
-                    Sign in
-                  </Button>
-                </Link>
+                <Button block type="primary" htmlType="submit">
+                  Login
+                </Button>
               </Form.Item>
             </Form>
 
@@ -127,10 +166,16 @@ export default function Login() {
             </Col> */}
 
             <Col className="hp-other-links hp-mt-24">
-              <a href="#" className="hp-text-color-black-80 hp-text-color-dark-40">
+              <a
+                href="#"
+                className="hp-text-color-black-80 hp-text-color-dark-40"
+              >
                 Privacy Policy
               </a>
-              <a href="#" className="hp-text-color-black-80 hp-text-color-dark-40">
+              <a
+                href="#"
+                className="hp-text-color-black-80 hp-text-color-dark-40"
+              >
                 Term of use
               </a>
             </Col>
@@ -139,4 +184,4 @@ export default function Login() {
       </Col>
     </Row>
   );
-};
+}

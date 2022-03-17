@@ -10,21 +10,15 @@ export default function Contact() {
 
   return (
     <Switch>
-      <Route exact path="/manager/user">
-        <Table />
-      </Route>
       <Route exact path="/admin/manager/user">
         <Table />
       </Route>
 
       {!selectedUser ? (
-        <Redirect to="/manager/user" />
+        <Redirect to="/admin/manager/user" />
       ) : (
         <>
-          <Route path="/admin/manager/user/user-detail">
-            <Detail selectedUser={selectedUser} />
-          </Route>
-          <Route path="/manager/user/user-detail">
+          <Route path="/admin/manager/user/user-detail/:id">
             <Detail selectedUser={selectedUser} />
           </Route>
         </>

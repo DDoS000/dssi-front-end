@@ -1,14 +1,26 @@
 import { Link } from "react-router-dom";
 
 import { Dropdown, Col, Avatar, Divider, Row } from "antd";
-import { Calendar, Game, People, } from "react-iconly";
-
+import { Calendar, Game, People } from "react-iconly";
+import { logout } from "../../../redux/auth/authActions";
 import avatarImg from "../../../assets/images/memoji/memoji-1.png";
+import { useDispatch } from "react-redux";
 
 export default function HeaderUser() {
+  const dispatch = useDispatch();
+
+  function logOut() {
+    dispatch(logout());
+  }
+
   const menu = (
-    <div className="hp-border-radius hp-border-1 hp-border-color-black-40 hp-bg-black-0 hp-bg-dark-100 hp-border-color-dark-80 hp-p-24 hp-mt-12" style={{ width: 260 }}>
-      <span className="hp-d-block h5 hp-text-color-black-100 hp-text-color-dark-0 hp-mb-8">Profile Settings</span>
+    <div
+      className="hp-border-radius hp-border-1 hp-border-color-black-40 hp-bg-black-0 hp-bg-dark-100 hp-border-color-dark-80 hp-p-24 hp-mt-12"
+      style={{ width: 260 }}
+    >
+      <span className="hp-d-block h5 hp-text-color-black-100 hp-text-color-dark-0 hp-mb-8">
+        Profile Settings
+      </span>
 
       <Link
         to="/pages/profile/personel-information"
@@ -21,22 +33,24 @@ export default function HeaderUser() {
 
       <Row>
         <Col span={24}>
-          <Link to="/manager/user" className="hp-d-flex-center hp-p1-body hp-py-8 hp-px-10 hp-d-block hp-transition hp-hover-bg-primary-4 hp-hover-bg-dark-80 hp-border-radius" style={{ marginLeft: -10, marginRight: -10 }}>
-            <People
-              set="curved"
-              size={16}
-            />
+          <Link
+            to="/manager/user"
+            className="hp-d-flex-center hp-p1-body hp-py-8 hp-px-10 hp-d-block hp-transition hp-hover-bg-primary-4 hp-hover-bg-dark-80 hp-border-radius"
+            style={{ marginLeft: -10, marginRight: -10 }}
+          >
+            <People set="curved" size={16} />
 
             <span className="hp-ml-8">User</span>
           </Link>
         </Col>
 
         <Col span={24}>
-          <Link to="/apps/calendar" className="hp-d-flex-center hp-p1-body hp-py-8 hp-px-10 hp-d-block hp-transition hp-hover-bg-primary-4 hp-hover-bg-dark-80 hp-border-radius" style={{ marginTop: -7, marginLeft: -10, marginRight: -10 }}>
-            <Calendar
-              set="curved"
-              size={16}
-            />
+          <Link
+            to="/apps/calendar"
+            className="hp-d-flex-center hp-p1-body hp-py-8 hp-px-10 hp-d-block hp-transition hp-hover-bg-primary-4 hp-hover-bg-dark-80 hp-border-radius"
+            style={{ marginTop: -7, marginLeft: -10, marginRight: -10 }}
+          >
+            <Calendar set="curved" size={16} />
 
             <span className="hp-ml-8">Calendar</span>
           </Link>
@@ -56,7 +70,7 @@ export default function HeaderUser() {
 
       <Divider className="hp-mb-16 hp-mt-6" />
 
-      <Link to="/login" className="hp-p1-body">
+      <Link to="/login" className="hp-p1-body" onClick={() => logOut()}>
         Logout
       </Link>
     </div>
@@ -69,4 +83,4 @@ export default function HeaderUser() {
       </Dropdown>
     </Col>
   );
-};
+}

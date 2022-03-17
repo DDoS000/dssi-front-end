@@ -16,15 +16,10 @@ import adminFeedback from "./admin/feedback";
 import studentMain from "./student/main";
 import studentFeedback from "./student/feedback";
 
-const role_navigation = "dev";
-let navigation;
-
-if (role_navigation === "admin") {
-  navigation = [...adminMain, ...adminManager, ...adminFeedback];
-} else if (role_navigation === "student") {
-  navigation = [...studentMain, ...studentFeedback];
-} else if (role_navigation === "dev") {
-  navigation = [
+let navigation = {
+  "ROLE_ADMIN": [...adminMain, ...adminManager, ...adminFeedback],
+  "ROLE_STUDENT": [...studentMain, ...studentFeedback],
+  "ROLE_DEV": [
     ...adminMain,
     ...adminManager,
     ...adminFeedback,
@@ -37,7 +32,7 @@ if (role_navigation === "admin") {
     ...apps,
     ...pages,
     ...components,
-  ];
-}
+  ],
+};
 
 export default navigation;

@@ -17,7 +17,7 @@ export default function Login(props) {
   const dispatch = useDispatch();
 
   if (isLoggedIn) {
-    return <Redirect to="/" />;
+    return <Redirect to="/apps/calendar" />;
   }
 
   const onFinish = (values) => {
@@ -26,10 +26,10 @@ export default function Login(props) {
     dispatch(login(values.username, values.password))
       .then(() => {
         messages.success({ content: "Success!", key: "login", duration: 2 });
-        window.location.href = "/dashboard";
+        window.location.href = "/apps/calendar";
       })
       .catch(() => {
-        messages.error({ content: "Error!", key: "login" });
+        messages.error({ content: "Error!", key: "login", duration: 1 });
       });
   };
 

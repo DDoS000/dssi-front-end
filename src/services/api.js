@@ -7,11 +7,4 @@ const instance = axios.create({
   },
 });
 
-export const fileapi = axios.create({
-  baseURL:  process.env.REACT_APP_REGISTRY_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
-
 export default instance;

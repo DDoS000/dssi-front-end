@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 
 import { Row, Col, Form, Input, Button, Checkbox } from "antd";
+import { message as messages } from "antd";
 import { RiFacebookFill } from "react-icons/ri";
 
 import LeftContent from "../leftContent";
@@ -11,10 +12,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../../../redux/auth/authActions";
 
 export default function Login(props) {
-  const [loading, setLoading] = useState(false);
-  const { isLoggedIn } = useSelector(state => state.auth)
-  const { message } = useSelector(state => state.message);
-  const dispatch = useDispatch()
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { message } = useSelector((state) => state.message);
+  const dispatch = useDispatch();
 
   if (isLoggedIn) {
     return <Redirect to="/" />;
@@ -22,15 +22,15 @@ export default function Login(props) {
 
   const onFinish = (values) => {
     console.log("login:", values);
-    setLoading(true);
+    messages.loading({ content: "Loading...", key: "login" });
     dispatch(login(values.username, values.password))
-    .then(() => {
-      props.history.push("/");
-      window.location.reload();
-    })
-    .catch(() => {
-      setLoading(false);
-    });
+      .then(() => {
+        messages.success({ content: "Success!", key: "login", duration: 2 });
+        window.location.href = "/dashboard";
+      })
+      .catch(() => {
+        messages.error({ content: "Error!", key: "login" });
+      });
   };
 
   return (
@@ -99,6 +99,13 @@ export default function Login(props) {
                   Login
                 </Button>
               </Form.Item>
+              {message && (
+                <div className="form-group">
+                  <div className="alert alert-danger" role="alert">
+                    {message}
+                  </div>
+                </div>
+              )}
             </Form>
 
             {/* <Col className="hp-form-info">

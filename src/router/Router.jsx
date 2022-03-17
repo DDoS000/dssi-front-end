@@ -5,12 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { theme } from "../redux/customise/customiseActions";
 
 // Router
-import {
-    BrowserRouter,
-    Route,
-    Switch,
-    useHistory,
-} from "react-router-dom";
+import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 
 // Routes
 import { Routes } from "./routes";
@@ -24,153 +19,182 @@ import FullLayout from "../layout/FullLayout";
 import Analytics from "../view/main/dashboard/analytics";
 import Error404 from "../view/pages/errors/404";
 import Calendar from "../view/apps/calendar";
+import Login from "../view/pages/authentication/login";
+import ProtectedRoute from "./ProtectRouter";
 
 export default function Router() {
-    // Redux
-    const customise = useSelector(state => state.customise)
-    const dispatch = useDispatch()
+  // Redux
+  const customise = useSelector((state) => state.customise);
+  const dispatch = useDispatch();
+  
 
-    // Location
-    const location = useHistory()
+  // Location
+  const location = useHistory();
 
-    // Dark Mode
-    let themeLocal
+  // Dark Mode
+  let themeLocal;
 
-    useEffect(() => {
-        if (localStorage) {
-            themeLocal = localStorage.getItem("theme")
-        }
+  useEffect(() => {
+    if (localStorage) {
+      themeLocal = localStorage.getItem("theme");
+    }
 
-        if (themeLocal === "light" || themeLocal === "dark") {
-            document.querySelector("body").classList.add(themeLocal)
-            dispatch(theme(themeLocal))
-        } else {
-            document.querySelector("body").classList.add(customise.theme)
-            dispatch(theme(customise.theme))
-        }
-    }, [])
+    if (themeLocal === "light" || themeLocal === "dark") {
+      document.querySelector("body").classList.add(themeLocal);
+      dispatch(theme(themeLocal));
+    } else {
+      document.querySelector("body").classList.add(customise.theme);
+      dispatch(theme(customise.theme));
+    }
+  }, []);
 
-    // RTL
-    useEffect(() => {
-        if (customise.direction == "ltr") {
-            document.querySelector("html").setAttribute("dir", "ltr");
-        } else if (customise.direction == "rtl") {
-            document.querySelector("html").setAttribute("dir", "rtl");
-        }
-    }, [])
+  // RTL
+  useEffect(() => {
+    if (customise.direction == "ltr") {
+      document.querySelector("html").setAttribute("dir", "ltr");
+    } else if (customise.direction == "rtl") {
+      document.querySelector("html").setAttribute("dir", "rtl");
+    }
+  }, []);
 
-    // Url Check
-    useEffect(() => {
-        // Theme
-        if (location.location.search == "?theme=dark") {
-            localStorage.setItem("theme", "dark")
-            themeLocal = "dark"
-        } else if (location.location.search == "?theme=light") {
-            localStorage.setItem("theme", "light")
-            themeLocal = "light"
-        }
+  // Url Check
+  useEffect(() => {
+    // Theme
+    if (location.location.search == "?theme=dark") {
+      localStorage.setItem("theme", "dark");
+      themeLocal = "dark";
+    } else if (location.location.search == "?theme=light") {
+      localStorage.setItem("theme", "light");
+      themeLocal = "light";
+    }
 
-        // Direction
-        if (location.location.search == "?direction=ltr") {
-            document.querySelector("html").setAttribute("dir", "ltr");
-        } else if (location.location.search == "?direction=rtl") {
-            document.querySelector("html").setAttribute("dir", "rtl");
-        }
-    }, [])
+    // Direction
+    if (location.location.search == "?direction=ltr") {
+      document.querySelector("html").setAttribute("dir", "ltr");
+    } else if (location.location.search == "?direction=rtl") {
+      document.querySelector("html").setAttribute("dir", "rtl");
+    }
+  }, []);
 
-    // Default Layout
-    const DefaultLayout = customise.layout; // FullLayout or VerticalLayout
+  // Default Layout
+  const DefaultLayout = customise.layout; // FullLayout or VerticalLayout
 
-    // All of the available layouts
-    const Layouts = { VerticalLayout, HorizontalLayout, FullLayout };
+  // All of the available layouts
+  const Layouts = { VerticalLayout, HorizontalLayout, FullLayout };
 
-    // Return Filtered Array of Routes & Paths
-    const LayoutRoutesAndPaths = (layout) => {
-        const LayoutRoutes = [];
-        const LayoutPaths = [];
-        if (Routes) {
-            // Checks if Route layout or Default layout matches current layout
-            Routes.filter(route => (route.layout === layout) && (
-                LayoutRoutes.push(route),
-                LayoutPaths.push(route.path)
-            ));
-        }
+  // Return Filtered Array of Routes & Paths
+  const LayoutRoutesAndPaths = (layout) => {
+    const LayoutRoutes = [];
+    const LayoutPaths = [];
+    if (Routes) {
+      // Checks if Route layout or Default layout matches current layout
+      Routes.filter(
+        (route) =>
+          route.layout === layout &&
+          (LayoutRoutes.push(route), LayoutPaths.push(route.path))
+      );
+    }
 
-        return { LayoutRoutes, LayoutPaths };
-    };
+    return { LayoutRoutes, LayoutPaths };
+  };
 
-    // Return Route to Render
-    const ResolveRoutes = () => {
-        return Object.keys(Layouts).map((layout, index) => {
-            const { LayoutRoutes, LayoutPaths } = LayoutRoutesAndPaths(layout);
+  // Return Route to Render
+  const ResolveRoutes = () => {
+    return Object.keys(Layouts).map((layout, index) => {
+      const { LayoutRoutes, LayoutPaths } = LayoutRoutesAndPaths(layout);
+      const LayoutTag = Layouts[layout];
 
-            let LayoutTag;
-            if (DefaultLayout == "HorizontalLayout") {
-                if (layout == "VerticalLayout") {
-                    LayoutTag = Layouts["HorizontalLayout"];
-                } else {
-                    LayoutTag = Layouts[layout];
-                }
-            } else {
-                LayoutTag = Layouts[layout];
-            }
-
-            return (
-                <Route path={LayoutPaths} key={index}>
-                    <LayoutTag>
-                        <Switch>
-                            {LayoutRoutes.map((route) => {
-                                return (
-                                    <Route
-                                        key={route.path}
-                                        path={route.path}
-                                        exact={route.exact === true}
-                                        render={(props) => {
-                                            return (
-                                                <Suspense fallback={null}>
-                                                    <route.component {...props} />
-                                                </Suspense>
-                                            );
-                                        }}
-                                    />
-                                );
-                            })}
-                        </Switch>
-                    </LayoutTag>
-                </Route>
-            );
-        });
-    };
-
-    return (
-        <BrowserRouter>
+      return (
+        <Route path={LayoutPaths} key={index}>
+          <LayoutTag>
             <Switch>
-                {ResolveRoutes()}
-
-                {/* Home Page */}
-                <Route
-                    exact
-                    path={'/'}
-                    render={() => {
-                        return (
-                            DefaultLayout == "HorizontalLayout" ? (
-                                <Layouts.HorizontalLayout>
-                                    <Calendar />
-                                </Layouts.HorizontalLayout>
-                            ) : (
-                                <Layouts.VerticalLayout>
-                                    <Calendar />
-                                </Layouts.VerticalLayout>
-                            )
-                        )
-                    }}
-                />
-
-                {/* NotFound */}
-                <Route path='*'>
-                    <Error404 />
-                </Route>
+              {LayoutRoutes.map((route) => {
+                return (
+                  <ProtectedRoute
+                    key={route.path}
+                    path={route.path}
+                    exact={route.exact === true}
+                    component={route.component}
+                    // render={(props) => {
+                    //     return (
+                    //         <Suspense fallback={null}>
+                    //             <route.component
+                    //                 {...props}
+                    //             />
+                    //         </Suspense>
+                    //     )
+                    // }}
+                  />
+                );
+              })}
             </Switch>
-        </BrowserRouter>
-    );
-};
+          </LayoutTag>
+        </Route>
+      );
+    });
+  };
+
+  //   const ResolveRoutes = () => {
+  //     return Object.keys(Layouts).map((layout, index) => {
+  //       const { LayoutRoutes, LayoutPaths } = LayoutRoutesAndPaths(layout);
+
+  //       let LayoutTag;
+  //       if (DefaultLayout == "HorizontalLayout") {
+  //         if (layout == "VerticalLayout") {
+  //           LayoutTag = Layouts["HorizontalLayout"];
+  //         } else {
+  //           LayoutTag = Layouts[layout];
+  //         }
+  //       } else {
+  //         LayoutTag = Layouts[layout];
+  //       }
+
+  //       return (
+  //         <Route path={LayoutPaths} key={index}>
+  //           <LayoutTag>
+  //             <Switch>
+  //               {LayoutRoutes.map((route) => {
+  //                 return (
+  //                   <Route
+  //                     key={route.path}
+  //                     path={route.path}
+  //                     exact={route.exact === true}
+  //                     render={(props) => {
+  //                       return (
+  //                         <Suspense fallback={null}>
+  //                           <route.component {...props} />
+  //                         </Suspense>
+  //                       );
+  //                     }}
+  //                   />
+  //                 );
+  //               })}
+  //             </Switch>
+  //           </LayoutTag>
+  //         </Route>
+  //       );
+  //     });
+  //   };
+
+  return (
+    <BrowserRouter>
+      <Switch>
+        {ResolveRoutes()}
+
+        {/* Home Page */}
+        <Route
+          exact
+          path={"/"}
+          render={() => {
+            return <Login />;
+          }}
+        />
+
+        {/* NotFound */}
+        <Route path="*">
+          <Error404 />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  );
+}

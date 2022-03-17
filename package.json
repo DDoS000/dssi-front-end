@@ -18,6 +18,7 @@
     "array-move": "^4.0.0",
     "axios": "^0.21.1",
     "axios-mock-adapter": "^1.20.0",
+    "caniuse-lite": "^1.0.30001317",
     "classnames": "^2.3.1",
     "country-flag-icons": "^1.4.21",
     "craco-less": "^1.18.0",

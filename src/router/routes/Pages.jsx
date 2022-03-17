@@ -80,9 +80,7 @@ const PagesRoutes = [
   },
   {
     path: "/components/data-display/tooltip",
-    component: lazy(() =>
-      import("../../view/components/data-display/tooltip")
-    ),
+    component: lazy(() => import("../../view/components/data-display/tooltip")),
     layout: "VerticalLayout",
   },
   {
@@ -116,9 +114,7 @@ const PagesRoutes = [
   },
   {
     path: "/components/data-entry/radio",
-    component: lazy(() =>
-      import("../../view/components/data-entry/radio")
-    ),
+    component: lazy(() => import("../../view/components/data-entry/radio")),
     layout: "VerticalLayout",
   },
   {
@@ -316,12 +312,16 @@ const PagesRoutes = [
   },
   {
     path: "/main/layouts/page-layouts/vertical-layout",
-    component: lazy(() => import("../../view/main/layouts/page-layouts/vertical")),
+    component: lazy(() =>
+      import("../../view/main/layouts/page-layouts/vertical")
+    ),
     layout: "VerticalLayout",
   },
   {
     path: "/main/layouts/page-layouts/horizontal-layout",
-    component: lazy(() => import("../../view/main/layouts/page-layouts/horizontal")),
+    component: lazy(() =>
+      import("../../view/main/layouts/page-layouts/horizontal")
+    ),
     layout: "HorizontalLayout",
   },
   {
@@ -330,6 +330,61 @@ const PagesRoutes = [
     layout: "FullLayout",
   },
 
+  //// ADMIN
+  // MAIN
+  {
+    path: "/admin/main/calendar",
+    component: lazy(() => import("../../view/apps/calendar")),
+    layout: "VerticalLayout",
+  },
+  {
+    path: "/admin/main/schedule",
+    component: lazy(() => import("../../view/main/schedule")),
+    layout: "VerticalLayout",
+  },
+  // MANAGER
+  {
+    path: "/admin/manager/user",
+    component: lazy(() => import("../../view/manager/user")),
+    layout: "VerticalLayout",
+  },
+  {
+    path: "/admin/manager/user/user-detail",
+    component: lazy(() => import("../../view/manager/user")),
+    layout: "VerticalLayout",
+  },
+  {
+    path: "/admin/manager/project",
+    component: lazy(() => import("../../view/manager/project")),
+    layout: "VerticalLayout",
+  },
+  // FEEDBACK
+  {
+    path: "/admin/feedback/faq",
+    component: lazy(() => import("../../view/feedback/faq")),
+    layout: "VerticalLayout",
+  },
+
+  ///// STUDENT
+  // MAIN
+  {
+    path: "/student/main/calendar",
+    component: lazy(() => import("../../view/apps/calendar")),
+    layout: "VerticalLayout",
+  },
+  {
+    path: "/student/main/project",
+    component: lazy(() => import("../../view/manager/project")),
+    layout: "VerticalLayout",
+  },
+  // FEEDBACK
+  {
+    path: "/student/feedback/faq",
+    component: lazy(() => import("../../view/feedback/faq")),
+    layout: "VerticalLayout",
+  },
+
+  //// DEV
   // MAINS
   {
     path: "/mains/calendar",
@@ -509,7 +564,9 @@ const PagesRoutes = [
   },
   {
     path: "/pages/password-is-changed",
-    component: lazy(() => import("../../view/pages/lock-screen/password-is-changed")),
+    component: lazy(() =>
+      import("../../view/pages/lock-screen/password-is-changed")
+    ),
     layout: "FullLayout",
   },
   {
@@ -556,7 +613,7 @@ const PagesRoutes = [
     path: "/pages/profile/connect-with-social",
     component: lazy(() => import("../../view/pages/profile")),
     layout: "VerticalLayout",
-  }
+  },
 ];
 
 export default PagesRoutes;

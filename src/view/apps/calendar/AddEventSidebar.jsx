@@ -36,13 +36,12 @@ const AddEventSidebar = (props) => {
   const [allDay, setAllDay] = useState(false);
   const [endPicker, setEndPicker] = useState(new Date());
   const [startPicker, setStartPicker] = useState(new Date());
-  const [value, setValue] = useState([{ value: "Travel", label: "Travel" }]);
+  const [value, setValue] = useState([{ value: "Presenting", label: "Presenting" }]);
 
   const options = [
-    { value: "Travel", label: "Travel", badge: "#C903FF" },
-    { value: "Social", label: "Social", badge: "#00F7BF" },
-    { value: "Work", label: "Work", badge: "#FFC700" },
-    { value: "Important", label: "Important", badge: "#FF0022" },
+    { value: "Complete", label: "Complete", badge: "#00F7BF" },
+    { value: "Presenting", label: "Presenting", badge: "#FFC700" },
+    { value: "Comming", label: "Comming", badge: "#FF0022" },
   ];
 
   const OptionComponent = ({ data, ...props }) => {
@@ -77,7 +76,7 @@ const AddEventSidebar = (props) => {
     dispatch(selectEvent({}));
     setTitle("");
     setDesc("");
-    setValue([{ value: "Travel", label: "Travel" }]);
+    setValue([{ value: "Presenting", label: "Presenting" }]);
     setStartPicker(new Date());
     setEndPicker(new Date());
     setIsModalVisible(false);

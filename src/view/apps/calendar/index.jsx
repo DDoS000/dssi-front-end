@@ -22,10 +22,9 @@ import {
 
 // Colors
 const calendarsColor = {
-  Travel: "travel",
-  Social: "social",
-  Work: "work",
-  Important: "important",
+  Complete: "complete",
+  Presenting: "presenting",
+  Comming: "comming",
 };
 
 const { Sider, Content } = Layout;

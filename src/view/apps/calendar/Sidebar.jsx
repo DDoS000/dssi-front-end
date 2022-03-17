@@ -8,20 +8,16 @@ import illustration from "../../../assets/images/apps/calendar/sidebar.svg";
 // Filters
 const filters = [
   {
-    label: "Travel",
-    color: "travel",
+    label: "Complete",
+    color: "complete",
   },
   {
-    label: "Social",
-    color: "social",
+    label: "Presenting",
+    color: "presenting",
   },
   {
-    label: "Work",
-    color: "work",
-  },
-  {
-    label: "Important",
-    color: "important",
+    label: "Comming",
+    color: "comming",
   },
 ];
 
@@ -31,7 +27,7 @@ const Sidebar = (props) => {
   return (
     <Row className="hp-h-100 hp-pr-24">
       <Col span={24}>
-        <h3>YodaCalendar</h3>
+        <h3>Calendar</h3>
 
         <Button
           className="hp-mt-16"

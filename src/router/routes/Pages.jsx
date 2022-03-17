@@ -384,6 +384,11 @@ const PagesRoutes = [
     component: lazy(() => import("../../view/manager/project")),
     layout: "VerticalLayout",
   },
+  {
+    path: "/student/main/upload-project",
+    component: lazy(() => import("../../view/manager/upload-project")),
+    layout: "VerticalLayout",
+  },
   // FEEDBACK
   {
     path: "/student/feedback/faq",

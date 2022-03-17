@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 // Redux
 import { getAllData, getData } from "../../../redux/contact/contactActions";
@@ -10,14 +11,13 @@ import NewProject from "./Model";
 import BreadCrumbs from "../../../layout/components/content/breadcrumbs";
 
 import CardProject from "./Card";
+import UploadProject from "../upload-project";
 
-import slideAvatar1 from "../../../assets/images/memoji/memoji-6.png";
-import slideAvatar2 from "../../../assets/images/memoji/memoji-5.png";
-import slideAvatar3 from "../../../assets/images/memoji/memoji-4.png";
 import slideImage1 from "../../../assets/images/dasboard/nft-slide-image-1.png";
 import slideImage2 from "../../../assets/images/dasboard/nft-slide-image-2.png";
 import slideImage3 from "../../../assets/images/dasboard/nft-slide-image-3.png";
 import slideImage4 from "../../../assets/images/dasboard/nft-slide-image-4.png";
+import Switch from "../../components/data-entry/switch";
 
 export default function Student() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -27,29 +27,34 @@ export default function Student() {
 
   const collectiblesData = [
     {
+      id: "1",
       // bg: slideImage1,
       name: "Perfect Mess 1 Test Text Long in Line",
       description: "1.44 ETH",
       status: "$4,852.23",
     },
     {
+      id: "2",
       bg: slideImage2,
       name: "Perfect Mess 1",
       description: "1.44 ETH",
       status: "$4,852.23",
     },
     {
+      id: "3",
       bg: slideImage3,
       name: "Perfect Mess 1",
       status: "$4,852.23",
     },
     {
+      id: "4",
       bg: slideImage4,
       name: "Perfect Mess 1",
       description: "1.44 ETH",
       status: "$4,852.23",
     },
     {
+      id: "5",
       bg: slideImage1,
       name: "Perfect Mess 1",
       description: "1.44 ETH",
@@ -97,9 +102,13 @@ export default function Student() {
               xl={5}
               style={{ marginLeft: 15, marginRight: 15, marginBottom: 40 }}
             >
-              <Card hoverable key={index}>
-                <CardProject item={item} />
-              </Card>
+              <Link
+                to={`/student/main/upload-project`}
+              >
+                <Card hoverable key={index}>
+                  <CardProject item={item} />
+                </Card>
+              </Link>
             </Col>
           ))}
         </Row>

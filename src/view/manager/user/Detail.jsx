@@ -30,7 +30,7 @@ export default function Detail({ selectedUser }) {
 
   // Popconfirm
   function confirm(userId) {
-    history.push("/apps/contact");
+    history.push("/admin/manager/user");
     dispatch(deleteUser(userId))
   }
 
@@ -49,7 +49,7 @@ export default function Detail({ selectedUser }) {
             <Col span={24}>
               <Row>
                 <Col span={24}>
-                  <Link to="/apps/contact">
+                  <Link to="/admin/manager/user">
                     <Button
                       type="text"
                       shape="square"

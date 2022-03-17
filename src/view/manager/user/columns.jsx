@@ -27,7 +27,7 @@ export const columns = [
       return (
         <Link
           onClick={() => store.dispatch(getUser(dataIndex[0]))}
-          to={`/apps/contact/contact-detail/${dataIndex[0]}`}
+          to={`/admin/manager/user/user-detail/${dataIndex[0]}`}
         >
           <Avatar
             size={48}

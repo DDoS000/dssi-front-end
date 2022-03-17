@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 import { addUser } from "../../../redux/contact/contactActions";
 import { PaperFail } from "react-iconly";
 
-export default function Mewproject({ open, toggleSidebar }) {
+export default function Newproject({ open, toggleSidebar }) {
   const { Option } = Select;
 
   const [form] = Form.useForm();

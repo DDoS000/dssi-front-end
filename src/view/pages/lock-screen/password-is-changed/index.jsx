@@ -5,7 +5,8 @@ import { Row, Col, Button } from "antd";
 import { RiArrowRightSLine } from "react-icons/ri";
 
 import bg from "../../../../assets/images/pages/lock-screen/lock-pattern.svg";
-import logo from "../../../../assets/images/logo/logo-vector-large.svg";
+// import logo from "../../../../assets/images/logo/logo-vector-large.svg";
+import logo from "../../../../assets/images/logo/logo-webp.webp";
 import LinksItem from "../links";
 
 export default function PasswordIsChanged() {

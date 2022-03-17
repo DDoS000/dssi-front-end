@@ -81,14 +81,14 @@ export default function UploadProject() {
       <Layout className="hp-flex-wrap">
         <Content className="hp-bg-color-black-0 hp-bg-color-dark-100 hp-p-24">
           <Row className="hp-h-100">
-            <Col xs={24} md={4} lg={4}>
+            <Col xs={24} md={6} lg={4}>
               <img
                 className="img-fluid"
                 src={illustration}
                 alt="illustration"
               />
             </Col>
-            <Col xs={24} md={14} lg={16}>
+            <Col xs={24} md={12} lg={16}>
               <h3 className="hp-text-overflow-ellipsis">Project Name</h3>
               <p className="hp-p1-body hp-mb-0">DESCRIPTIONS</p>
               <p className="hp-p1-body hp-mb-0" style={{ color: "#ffff" }}>

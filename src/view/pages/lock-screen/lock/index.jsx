@@ -5,7 +5,8 @@ import { User } from "react-iconly";
 import { RiSettings3Line } from "react-icons/ri";
 
 import bg from "../../../../assets/images/pages/lock-screen/lock-pattern.svg";
-import logo from "../../../../assets/images/logo/logo-vector.svg";
+// import logo from "../../../../assets/images/logo/logo-vector.svg";
+import logo from "../../../../assets/images/logo/logo-webp.webp";
 import avatar from "../../../../assets/images/memoji/memoji-2.svg";
 
 export default function Lock() {

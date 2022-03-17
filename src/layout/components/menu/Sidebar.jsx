@@ -14,7 +14,7 @@ import {
     RiMenuUnfoldLine,
 } from "react-icons/ri";
 
-import logoSmall from "../../../assets/images/logo/logo-small.svg";
+import logoSmall from "../../../assets/images/logo/logo-webp.webp";
 
 import MenuLogo from "./logo";
 import MenuFooter from "./footer";

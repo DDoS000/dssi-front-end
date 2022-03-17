@@ -4,13 +4,13 @@ const manager = [
     header: "MANAGER",
   },
   {
-    id: "user",
+    id: "manager-user",
     title: "User",
     icon: <People set="curved" />,
     navLink: "/manager/user",
   },
   {
-    id: "project",
+    id: "manager-project",
     title: "Project",
     icon: <Category set="light" />,
     navLink: "/manager/project",

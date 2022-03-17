@@ -10,7 +10,7 @@ const manager = [
     navLink: "/admin/manager/user",
   },
   {
-    id: "project",
+    id: "admin-project",
     title: "Project",
     icon: <Category set="light" />,
     navLink: "/admin/manager/project",

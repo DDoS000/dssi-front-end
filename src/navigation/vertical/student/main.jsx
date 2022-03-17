@@ -1,4 +1,4 @@
-import { Calendar } from "react-iconly";
+import { Calendar,Category } from "react-iconly";
 import { BsTable } from "react-icons/bs";
 const main = [
   {
@@ -13,7 +13,7 @@ const main = [
   {
     id: "project",
     title: "Project",
-    icon: <Calendar set="curved" />,
+    icon: <Category set="light" />,
     navLink: "/student/main/project",
   },
 ];

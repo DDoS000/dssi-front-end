@@ -56,7 +56,7 @@ export default function HeaderUser() {
 
       <Divider className="hp-mb-16 hp-mt-6" />
 
-      <Link to="/pages/authentication/login" className="hp-p1-body">
+      <Link to="/login" className="hp-p1-body">
         Logout
       </Link>
     </div>

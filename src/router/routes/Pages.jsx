@@ -330,6 +330,13 @@ const PagesRoutes = [
     layout: "FullLayout",
   },
 
+  // AUTHEN
+  {
+    path: "/login",
+    component: lazy(() => import("../../view/pages/authentication/login")),
+    layout: "FullLayout",
+  },
+
   //// ADMIN
   // MAIN
   {

@@ -5,7 +5,7 @@ const main = [
     header: "MAIN",
   },
   {
-    id: "apps-calendar",
+    id: "admin-calendar",
     title: "Calendar",
     icon: <Calendar set="curved" />,
     navLink: "/admin/main/calendar",

@@ -5,13 +5,13 @@ const mains = [
     header: "MAIN",
   },
   {
-    id: "apps-calendar",
+    id: "mains-calendar",
     title: "Calendar",
     icon: <Calendar set="curved" />,
     navLink: "/mains/calendar",
   },
   {
-    id: "schedule",
+    id: "mains-schedule",
     title: "Schedule",
     icon: <BsTable set="curved" />,
     navLink: "/mains/schedule",

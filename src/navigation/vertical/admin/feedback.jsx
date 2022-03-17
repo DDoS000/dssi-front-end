@@ -5,7 +5,7 @@ const feedback = [
     header: "FEEDBACK",
   },
   {
-    id: "faq",
+    id: "admin-faq",
     title: "FAQ",
     icon: <InfoSquare set="curved" className="remix-icon" />,
     navLink: "/admin/feedback/faq",

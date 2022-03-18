@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import { Row, Col, Avatar} from "antd";
-import { Bookmark,Work } from "react-iconly";
+import { Row, Col, Avatar, Tag } from "antd";
+import { Bookmark, Work } from "react-iconly";
 
 export default function CardProject(props) {
   const { item } = props;
@@ -21,7 +21,11 @@ export default function CardProject(props) {
             </div>
           ) : (
             <div className="hp-position-absolute-bottom-left">
-              <Avatar size={45} src={<Work set="curved" />} style={{ borderWidth: 2 }} />
+              <Avatar
+                size={45}
+                src={<Work set="curved" />}
+                style={{ borderWidth: 2 }}
+              />
             </div>
           )}
         </Col>
@@ -51,10 +55,12 @@ export default function CardProject(props) {
 
       <Row align="top" justify="space-between">
         <Col>
-          <Bookmark set="curved" />
-          <span className="hp-p1-body hp-text-color-black-80 hp-text-color-dark-20 hp-ml-6">
+          <Tag
+            className="hp-mr-0"
+            color="green"
+          >
             {item.status}
-          </span>
+          </Tag>
         </Col>
       </Row>
     </div>

@@ -10,11 +10,11 @@ export default function SettingPtoject({ open, toggleSidebar }) {
 
   const data = [
     {
-      name: "Test Project",
-      description: "for test model setting",
+      name: "Bunny Book",
+      description:
+        "A tiny social network (for bunnies), built with FastAPI and React+RxJs",
       service: [
         { port: "pubplic", service: "test1" },
-        { port: "private", service: "test2" },
       ],
     },
   ];

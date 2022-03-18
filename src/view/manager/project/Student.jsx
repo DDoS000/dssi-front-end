@@ -14,9 +14,6 @@ import CardProject from "./Card";
 import UploadProject from "../upload-project";
 
 import slideImage1 from "../../../assets/images/dasboard/nft-slide-image-1.png";
-import slideImage2 from "../../../assets/images/dasboard/nft-slide-image-2.png";
-import slideImage3 from "../../../assets/images/dasboard/nft-slide-image-3.png";
-import slideImage4 from "../../../assets/images/dasboard/nft-slide-image-4.png";
 import Switch from "../../components/data-entry/switch";
 
 export default function Student() {
@@ -28,37 +25,10 @@ export default function Student() {
   const collectiblesData = [
     {
       id: "1",
-      // bg: slideImage1,
-      name: "Perfect Mess 1 Test Text Long in Line",
-      description: "1.44 ETH",
-      status: "$4,852.23",
-    },
-    {
-      id: "2",
-      bg: slideImage2,
-      name: "Perfect Mess 1",
-      description: "1.44 ETH",
-      status: "$4,852.23",
-    },
-    {
-      id: "3",
-      bg: slideImage3,
-      name: "Perfect Mess 1",
-      status: "$4,852.23",
-    },
-    {
-      id: "4",
-      bg: slideImage4,
-      name: "Perfect Mess 1",
-      description: "1.44 ETH",
-      status: "$4,852.23",
-    },
-    {
-      id: "5",
       bg: slideImage1,
-      name: "Perfect Mess 1",
-      description: "1.44 ETH",
-      status: "$4,852.23",
+      name: "Bunny Book",
+      description: "A tiny social network (for bunnies), built with FastAPI and React+RxJs",
+      status: "ready",
     },
   ];
 

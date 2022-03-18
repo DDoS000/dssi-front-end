@@ -3,11 +3,7 @@ import { Document, Upload } from "react-iconly";
 
 export default function HeaderText() {
   return (
-    <Col
-      xl={16}
-      lg={14}
-      className="hp-header-left-text hp-d-flex-center"
-    >
+    <Col xl={16} lg={14} className="hp-header-left-text hp-d-flex-center">
       <Document
         set="curved"
         size="large"
@@ -15,11 +11,10 @@ export default function HeaderText() {
       />
 
       <p className="hp-header-left-text-item hp-input-label hp-text-color-black-100 hp-text-color-dark-0 hp-ml-16 hp-mb-0">
-        Do you know the latest update of 2022? 🎉 &nbsp;
+        ยินดีต้อนรับเข้าสู้ระบบ 🎉 &nbsp;
         <span className="hp-font-weight-300 hp-text-color-danger-3">
-          Our roadmap is alive for future updates.
+          future updates.
         </span>
-
         <a
           href="https://trello.com/b/8ZRmDN5y/yoda-roadmap"
           className="hp-ml-8 hp-text-color-black-60"
@@ -30,4 +25,4 @@ export default function HeaderText() {
       </p>
     </Col>
   );
-};
+}

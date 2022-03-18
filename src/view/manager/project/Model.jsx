@@ -44,7 +44,7 @@ export default function Newproject({ open, toggleSidebar }) {
 
   return (
     <Modal
-      title="Add Contact"
+      title="Add Project"
       visible={open}
       onCancel={toggleSidebar}
       footer={null}

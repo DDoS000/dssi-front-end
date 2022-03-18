@@ -56,9 +56,9 @@ export default function MenuProfile(props) {
             <Avatar size={80} src={avatar} />
           </Badge>
 
-          <h3 className="hp-mt-24 hp-mb-4">Dolores Bianca</h3>
-          <a href="mailto:dolores@yoda.com" className="hp-p1-body">
-            dolores@yoda.com
+          <h3 className="hp-mt-24 hp-mb-4">Suphamongkhon Khotasit</h3>
+          <a href="mailto: Suphamongkhon.kh.61@ubu.ac.th" className="hp-p1-body">
+            Suphamongkhon.kh.61@ubu.ac.th
           </a>
         </div>
 

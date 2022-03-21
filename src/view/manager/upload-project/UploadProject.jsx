@@ -45,6 +45,16 @@ export default function UploadProject() {
     />
   );
 
+  const datas = [
+    {
+      id: "1",
+      name: "Bunny Book",
+      description:
+        "A tiny social network (for bunnies), built with FastAPI and React+RxJs",
+      service: [{ port: "pubplic", service: "test1" }],
+    },
+  ];
+
   const build = `
   Cloning github.com/Masteribot/slotatk-fontend (Branch: main, Commit: aa63f7c)\n
   Cloning completed: 9.774s\n
@@ -149,7 +159,14 @@ export default function UploadProject() {
       return isZIP || Upload.LIST_IGNORE;
     },
     onChange(info) {
-      console.log(info.fileList);
+      if (info.file.status !== "uploading") {
+        console.log(info.file, info.fileList);
+      }
+      if (info.file.status === "done") {
+        message.success(`${info.file.name} file uploaded successfully`);
+      } else if (info.file.status === "error") {
+        message.error(`${info.file.name} file upload failed.`);
+      }
     },
     onDrop() {},
   };
@@ -169,7 +186,7 @@ export default function UploadProject() {
   const { Content } = Layout;
   return (
     <Card className="hp-h-100 hp-mb-32">
-      <Layout className="hp-flex-wrap">
+      <Layout style={{ marginBottom: "30px" }}>
         <Content className="hp-bg-color-black-0 hp-bg-color-dark-100 hp-p-24">
           <Row className="hp-h-100">
             <Col xs={24} md={6} lg={4}>
@@ -182,10 +199,7 @@ export default function UploadProject() {
             <Col xs={24} md={12} lg={16}>
               <h3 className="hp-text-overflow-ellipsis">Bunny Book</h3>
               <p className="hp-p1-body hp-mb-0">DESCRIPTIONS</p>
-              <p
-                className="hp-p1-body hp-mb-0"
-                style={{ color: "#ffff"}}
-              >
+              <p className="hp-p1-body hp-mb-0" style={{ color: "#ffff" }}>
                 A tiny social network (for bunnies), built with FastAPI and
                 React+RxJs
               </p>
@@ -323,7 +337,11 @@ export default function UploadProject() {
           </Row>
         </Content>
       </Layout>
-      <SetttingProject open={sidebarOpen} toggleSidebar={toggleSidebar} />
+      <SetttingProject
+        items={datas}
+        open={sidebarOpen}
+        toggleSidebar={toggleSidebar}
+      />
     </Card>
   );
 }

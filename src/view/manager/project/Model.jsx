@@ -87,7 +87,6 @@ export default function Newproject({ open, toggleSidebar }) {
                     className="select-after"
                     style={{ width: "25%" }}
                   >
-                    <Option value="select">Select</Option>
                     <Option value="public">Public</Option>
                     <Option value="private">Private</Option>
                   </Select>

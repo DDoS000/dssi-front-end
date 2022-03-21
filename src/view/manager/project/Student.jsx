@@ -27,7 +27,8 @@ export default function Student() {
       id: "1",
       bg: slideImage1,
       name: "Bunny Book",
-      description: "A tiny social network (for bunnies), built with FastAPI and React+RxJs",
+      description:
+        "A tiny social network (for bunnies), built with FastAPI and React+RxJs",
       status: "ready",
     },
   ];
@@ -70,12 +71,11 @@ export default function Student() {
               xs={22}
               md={11}
               xl={5}
+              key={index}
               style={{ marginLeft: 15, marginRight: 15, marginBottom: 40 }}
             >
-              <Link
-                to={`/student/main/upload-project`}
-              >
-                <Card hoverable key={index}>
+              <Link to={`/student/main/upload-project`}>
+                <Card hoverable>
                   <CardProject item={item} />
                 </Card>
               </Link>

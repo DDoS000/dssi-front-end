@@ -9,7 +9,7 @@ import bgDark from "../../../assets/images/pages/authentication/authentication-l
 import logo from "../../../assets/images/logo/logo-vector-blue.svg";
 import logoDark from "../../../assets/images/logo/logo-vector.svg";
 
-import Yodalogo from "../../../assets/images/logo/logo-webp.webp";
+import Yodalogo from "../../../assets/images/logo/logo-32x32.png";
 
 export default function LeftContent() {
   // Redux

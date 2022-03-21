@@ -7,12 +7,12 @@ import content1Image from '../../../assets/images/pages/landing/content-1.png'
 
 export default function LandingContent1() {
     return (
-        <section className="hp-landing-content-1 hp-border-top-1 hp-border-color-dark-80 hp-overflow-hidden hp-mt-sm-64 hp-mt-120 hp-py-sm-64 hp-py-120">
-            <div className="hp-landing-container hp-mr-md-0 hp-mr-120">
+        <section className="hp-landing-content-1 hp-border-top-1 hp-border-color-dark-80 hp-overflow-hidden hp-mt-sm-64 hp-mt-0 hp-py-sm-64 hp-py-0">
+            <div className="hp-landing-container hp-mr-md-0 hp-mr-0">
                 <Row align="middle" justify="space-between">
                     <Col xl={10} lg={14} md={16} span={24}>
                         <h2 className="h1 hp-mb-32">
-                            Perfect Solution For Small Business
+                            Docker
                         </h2>
 
                         <p className="h5 hp-font-weight-400 hp-text-color-black-80 hp-text-color-dark-30 hp-mb-48 hp-pr-96">

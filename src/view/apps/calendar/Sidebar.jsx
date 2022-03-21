@@ -21,6 +21,8 @@ const filters = [
   },
 ];
 
+const pathname = window.location.pathname;
+
 const Sidebar = (props) => {
   const { updateFilter, updateAllFilters, showModal, store, dispatch } = props;
 
@@ -29,15 +31,17 @@ const Sidebar = (props) => {
       <Col span={24}>
         <h3>Calendar</h3>
 
-        <Button
-          className="hp-mt-16"
-          type="primary"
-          onClick={showModal}
-          block
-          icon={<RiCalendarEventLine className="remix-icon" size={17} />}
-        >
-          New Event
-        </Button>
+        {pathname == "/apps/calendar" ? (
+          <Button
+            className="hp-mt-16"
+            type="primary"
+            onClick={showModal}
+            block
+            icon={<RiCalendarEventLine className="remix-icon" size={17} />}
+          >
+            New Event
+          </Button>
+        ) : null}
 
         <h5 className="hp-mt-48">Calendars</h5>
 

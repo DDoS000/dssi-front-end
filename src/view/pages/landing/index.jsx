@@ -19,15 +19,15 @@ export default function Landing() {
 
             <LandingCompanies />
 
-            <LandingFeatures />
+            {/* <LandingFeatures /> */}
 
             <LandingContent1 />
 
-            <LandingContent2 />
+            {/* <LandingContent2 /> */}
 
-            <LandingPeople />
+            {/* <LandingPeople /> */}
 
-            <LandingPricing />
+            {/* <LandingPricing /> */}
 
             <LandingFooter />
         </div>

@@ -67,9 +67,9 @@ export default function LandingHeader() {
                                                 {loginButton}
                                             </Col>
 
-                                            <Col>
+                                            {/* <Col>
                                                 {signUpButton}
-                                            </Col>
+                                            </Col> */}
                                         </Row>
                                     </Menu.Item>
                                 </Menu>
@@ -98,7 +98,7 @@ export default function LandingHeader() {
                     </Col>
 
                     <Col className="hp-landing-header-buttons">
-                        {signUpButton}
+                        {/* {signUpButton} */}
                         {loginButton}
                     </Col>
                 </Row>

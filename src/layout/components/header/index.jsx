@@ -112,7 +112,7 @@ export default function MenuHeader(props) {
 
             {/* <HeaderCart /> */}
 
-            <HeaderNotifications />
+            {/* <HeaderNotifications /> */}
 
             <HeaderUser />
           </Row>

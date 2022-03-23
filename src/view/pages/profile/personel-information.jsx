@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useForm } from "react";
 
 import {
   Row,
@@ -13,13 +13,15 @@ import {
 } from "antd";
 
 import { RiCloseFill, RiCalendarLine } from "react-icons/ri";
+import { useSelector } from "react-redux";
 
 export default function InfoProfile() {
   const [contactModalVisible, setContactModalVisible] = useState(false);
   const [preferanceModalVisible, setPreferanceModalVisible] = useState(false);
 
   const listTitle = "hp-p1-body";
-  const listResult = "hp-mt-sm-4 hp-p1-body hp-text-color-black-100 hp-text-color-dark-0";
+  const listResult =
+    "hp-mt-sm-4 hp-p1-body hp-text-color-black-100 hp-text-color-dark-0";
   const dividerClass = "hp-border-color-black-40 hp-border-color-dark-80";
 
   const contactModalShow = () => {
@@ -38,9 +40,14 @@ export default function InfoProfile() {
     setPreferanceModalVisible(false);
   };
 
+  const { user } = useSelector((state) => state.auth);
+  const [form] = Form.useForm();
+  form.setFieldsValue(user);
+
   return (
     <div>
       <Modal
+        forceRender
         title="Contact Edit"
         width={416}
         centered
@@ -51,12 +58,17 @@ export default function InfoProfile() {
           <RiCloseFill className="remix-icon text-color-black-100" size={24} />
         }
       >
-        <Form layout="vertical" name="basic" initialValues={{ remember: true }}>
+        <Form
+          form={form}
+          layout="vertical"
+          name="basic"
+          initialValues={{ remember: true }}
+        >
           <Form.Item label="Full Name" name="fullname">
             <Input />
           </Form.Item>
 
-          <Form.Item label="Display Name" name="displayname">
+          <Form.Item label="Username" name="username">
             <Input />
           </Form.Item>
 
@@ -64,22 +76,7 @@ export default function InfoProfile() {
             <Input />
           </Form.Item>
 
-          <Form.Item label="Phone" name="phone">
-            <Input />
-          </Form.Item>
 
-          <Form.Item label="Date of Birth" name="dateofbirth">
-            <DatePicker
-              className="hp-w-100"
-              suffixIcon={
-                <RiCalendarLine className="remix-icon hp-text-color-black-60" />
-              }
-            />
-          </Form.Item>
-
-          <Form.Item label="Address" name="address">
-            <Input.TextArea rows={3} />
-          </Form.Item>
 
           <Row>
             <Col md={12} span={24} className="hp-pr-sm-0 hp-pr-12">
@@ -154,25 +151,11 @@ export default function InfoProfile() {
 
       <Col md={15} span={24}>
         <h2>Personal Informations</h2>
-        <p className="hp-p1-body hp-mb-0">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-          sodales sit amet nunc et vehicula. Mauris sed lectus nisi.
-        </p>
       </Col>
 
       <Divider className={dividerClass} />
 
-      <Col md={15} span={24}>
-        <h3>About</h3>
-        <p className="hp-p1-body hp-mb-0">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-          sodales sit amet nunc et vehicula. Mauris sed lectus nisi. Suspendisse
-          velit mi, pretium non euismod vitae Suspendisse velit mi, pretium non
-          euismod vitae
-        </p>
-      </Col>
-
-      <Divider className={dividerClass} />
+      {/* <Divider className={dividerClass} /> */}
 
       <Row align="middle" justify="space-between">
         <Col md={12} span={24}>
@@ -192,34 +175,17 @@ export default function InfoProfile() {
           <ul>
             <li>
               <span className={listTitle}>Full Name</span>
-              <span className={listResult}>Edward Yıldırım</span>
+              <span className={listResult}>{user.fullname}</span>
             </li>
 
             <li className="hp-mt-18">
-              <span className={listTitle}>Display Name</span>
-              <span className={listResult}>Edward.3</span>
+              <span className={listTitle}>UserName</span>
+              <span className={listResult}>{user.username}</span>
             </li>
 
             <li className="hp-mt-18">
               <span className={listTitle}>Email</span>
-              <span className={listResult}>Add Email</span>
-            </li>
-
-            <li className="hp-mt-18">
-              <span className={listTitle}>Phone</span>
-              <a className={listResult} href="tel:+900374323">
-                +90 037 43 23
-              </a>
-            </li>
-
-            <li className="hp-mt-18">
-              <span className={listTitle}>Date of Birth</span>
-              <span className={listResult}>02/03/94</span>
-            </li>
-
-            <li className="hp-mt-18">
-              <span className={listTitle}>Address</span>
-              <span className={listResult}>Lorem ipsum dolor sit 07/6</span>
+              <span className={listResult}>{user.email}</span>
             </li>
           </ul>
         </Col>
@@ -227,7 +193,7 @@ export default function InfoProfile() {
 
       <Divider className={dividerClass} />
 
-      <Row align="middle" justify="space-between">
+      {/* <Row align="middle" justify="space-between">
         <Col md={12} span={24}>
           <h3>Preferance</h3>
         </Col>
@@ -256,7 +222,7 @@ export default function InfoProfile() {
             </li>
           </ul>
         </Col>
-      </Row>
+      </Row> */}
     </div>
   );
 }

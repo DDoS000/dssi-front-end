@@ -6,7 +6,11 @@ import { RiSettings3Line } from "react-icons/ri";
 
 import avatar from "../../../../assets/images/memoji/memoji-1.png";
 
+import { useSelector } from "react-redux";
+
 export default function MenuFooter(props) {
+  const { user } = useSelector((state) => state.auth);
+
   return props.collapsed === false ? (
     <Row
       className="hp-sidebar-footer hp-pb-24 hp-px-24 hp-bg-color-dark-100"
@@ -21,7 +25,7 @@ export default function MenuFooter(props) {
 
           <div>
             <span className="hp-d-block hp-text-color-black-100 hp-text-color-dark-0 hp-p1-body">
-              61114440735
+              {user.username}
             </span>
 
             <Link

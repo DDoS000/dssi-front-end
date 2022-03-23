@@ -44,7 +44,8 @@ export default function MenuProfile(props) {
   const splitLocation = pathname.split("/");
 
   // Redux
-  const customise = useSelector(state => state.customise)
+  const customise = useSelector((state) => state.customise);
+  const { user } = useSelector((state) => state.auth);
 
   return (
     <Col flex="240px" className="hp-profile-menu hp-py-24">
@@ -56,9 +57,10 @@ export default function MenuProfile(props) {
             <Avatar size={80} src={avatar} />
           </Badge>
 
-          <h3 className="hp-mt-24 hp-mb-4">Suphamongkhon Khotasit</h3>
-          <a href="mailto: Suphamongkhon.kh.61@ubu.ac.th" className="hp-p1-body">
-            Suphamongkhon.kh.61@ubu.ac.th
+          <h3 className="hp-mt-24 hp-mb-4">{user.fullname}</h3>
+
+          <a href={"mailto:" + user.email} className="hp-p1-body">
+            {user.email}
           </a>
         </div>
 
@@ -72,9 +74,12 @@ export default function MenuProfile(props) {
             icon={<User set="curved" className={menuIconClass} />}
             className={`
               hp-mb-16 hp-pl-24 hp-pr-32
-              ${splitLocation[splitLocation.length - 1] === "personel-information"
-                ? "ant-menu-item-selected"
-                : "ant-menu-item-selected-in-active"}
+              ${
+                splitLocation[splitLocation.length - 1] ===
+                "personel-information"
+                  ? "ant-menu-item-selected"
+                  : "ant-menu-item-selected-in-active"
+              }
             `}
             onClick={props.onCloseDrawer}
           >
@@ -88,9 +93,11 @@ export default function MenuProfile(props) {
             icon={<Notification set="curved" className={menuIconClass} />}
             className={`
               hp-mb-16 hp-pl-24 hp-pr-32
-              ${splitLocation[splitLocation.length - 1] === "notifications"
-                ? "ant-menu-item-selected"
-                : "ant-menu-item-selected-in-active"}
+              ${
+                splitLocation[splitLocation.length - 1] === "notifications"
+                  ? "ant-menu-item-selected"
+                  : "ant-menu-item-selected-in-active"
+              }
             `}
             onClick={props.onCloseDrawer}
           >
@@ -102,9 +109,11 @@ export default function MenuProfile(props) {
             icon={<Activity set="curved" className={menuIconClass} />}
             className={`
               hp-mb-16 hp-pl-24 hp-pr-32
-              ${splitLocation[splitLocation.length - 1] === "activity"
-                ? "ant-menu-item-selected"
-                : "ant-menu-item-selected-in-active"}
+              ${
+                splitLocation[splitLocation.length - 1] === "activity"
+                  ? "ant-menu-item-selected"
+                  : "ant-menu-item-selected-in-active"
+              }
             `}
             onClick={props.onCloseDrawer}
           >
@@ -116,9 +125,11 @@ export default function MenuProfile(props) {
             icon={<Setting set="curved" className={menuIconClass} />}
             className={`
               hp-mb-16 hp-pl-24 hp-pr-32
-              ${splitLocation[splitLocation.length - 1] === "security"
-                ? "ant-menu-item-selected"
-                : "ant-menu-item-selected-in-active"}
+              ${
+                splitLocation[splitLocation.length - 1] === "security"
+                  ? "ant-menu-item-selected"
+                  : "ant-menu-item-selected-in-active"
+              }
             `}
             onClick={props.onCloseDrawer}
           >
@@ -130,9 +141,11 @@ export default function MenuProfile(props) {
             icon={<Password set="curved" className={menuIconClass} />}
             className={`
               hp-mb-16 hp-pl-24 hp-pr-32
-              ${splitLocation[splitLocation.length - 1] === "password-change"
-                ? "ant-menu-item-selected"
-                : "ant-menu-item-selected-in-active"}
+              ${
+                splitLocation[splitLocation.length - 1] === "password-change"
+                  ? "ant-menu-item-selected"
+                  : "ant-menu-item-selected-in-active"
+              }
             `}
             onClick={props.onCloseDrawer}
           >
@@ -144,9 +157,12 @@ export default function MenuProfile(props) {
             icon={<Heart set="curved" className={menuIconClass} />}
             className={`
               hp-mb-16 hp-pl-24 hp-pr-32
-              ${splitLocation[splitLocation.length - 1] === "connect-with-social"
-                ? "ant-menu-item-selected"
-                : "ant-menu-item-selected-in-active"}
+              ${
+                splitLocation[splitLocation.length - 1] ===
+                "connect-with-social"
+                  ? "ant-menu-item-selected"
+                  : "ant-menu-item-selected-in-active"
+              }
             `}
             onClick={props.onCloseDrawer}
           >

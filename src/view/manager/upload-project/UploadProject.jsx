@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { useParams, Link, useHistory } from "react-router-dom";
 
-// Redux
-import { deleteUser, getUser } from "../../../redux/contact/contactActions";
-import { useDispatch, useSelector } from "react-redux";
+import { Terminal } from "xterm";
+import { FitAddon } from "xterm-addon-fit";
 import SetttingProject from "./Model";
 
 import {
@@ -32,11 +30,52 @@ import illustration from "../../../assets/images/apps/contact/upload-project.svg
 
 export default function UploadProject() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [collapse, setCollapse] = useState([]);
+  const [collapse, setCollapse] = useState(null);
 
   const { Panel } = Collapse;
 
   function callback() {}
+
+  const term = new Terminal({
+    windowsMode:
+      ["Windows", "Win16", "Win32", "WinCE"].indexOf(navigator.platform) >= 0,
+    convertEol: true,
+    fontFamily: `'Fira Mono', monospace`,
+    fontSize: 14,
+    fontWeight: 400,
+    rendererType: "canvas", // canvas 或者 dom
+  });
+
+  const cleanTerminal = (terminalContainer) => {
+    // 清除容器的子节点;
+    while (terminalContainer.children.length) {
+      terminalContainer.removeChild(terminalContainer.children[0]);
+    }
+    term.clear();
+  };
+
+  const openInitTerminal = () => {
+    console.log("loading terminal...");
+    const terminalContainer = document.getElementById("terminal");
+    cleanTerminal(terminalContainer);
+    // style
+    term.setOption("theme", {
+      background: "black",
+      foreground: "white",
+    });
+
+    // plugins
+    const fitAddon = new FitAddon();
+    term.loadAddon(fitAddon);
+
+    term.open(terminalContainer);
+
+    term.element.style.padding = "10px";
+    // fit windows
+    fitAddon.fit();
+    // focus
+    term.focus();
+  };
 
   const genExtra = () => (
     <RiArrowRightSLine
@@ -61,7 +100,6 @@ export default function UploadProject() {
     name: "file",
     multiple: false,
     maxCount: 1,
-    // action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
     beforeUpload: (file) => {
       const isZIP = file.type === "application/x-zip-compressed";
       if (!isZIP) {
@@ -85,10 +123,29 @@ export default function UploadProject() {
   // Collapse
   const toggleCollapse = () => {
     console.log(collapse);
-    if (!collapse) {
+
+    const terminalContainer = document.getElementById("terminal");
+    if (terminalContainer) {
+      cleanTerminal(terminalContainer);
+    }
+
+    if (collapse == null) {
       setCollapse(["1", "2"]);
+      openInitTerminal();
+
+      build.split("\n").map((item, key) => {
+        console.log(typeof item);
+        term.writeln(item);
+        // console.log(item);
+      });
+
+      // term.writeln("Welcome to xterm.js");
+      // term.writeln(
+      //   "This is a local terminal with a real data stream in the back-end."
+      // );
+      // term.writeln("");
     } else {
-      setCollapse();
+      setCollapse(null);
     }
   };
 
@@ -149,7 +206,9 @@ export default function UploadProject() {
                 </Col>
               </Row>
             </Col>
+
             <Divider />
+
             <Col span={24}>
               <Row>
                 <Col span={18}>
@@ -172,7 +231,7 @@ export default function UploadProject() {
               <br />
               <Row>
                 <Col span={24}>
-                  <Collapse activeKey={collapse} onChange={callback}>
+                  <Collapse activeKey={["1", "2"]} onChange={callback}>
                     <Panel
                       header={
                         <p className="hp-d-flex-center hp-p1-body hp-mb-0">
@@ -187,13 +246,22 @@ export default function UploadProject() {
                       showArrow={false}
                       extra={genExtra()}
                     >
-                      {build.split("\n").map((item, key) => {
+                      {/* {build.split("\n").map((item, key) => {
                         return (
                           <p className="hp-p1-body" key={key}>
                             {item}
                           </p>
                         );
-                      })}
+                      })} */}
+
+                      <div
+                        id="terminal"
+                        style={{
+                          height: "100%",
+                          width: "100%",
+                          marginTop: "20px",
+                        }}
+                      />
                     </Panel>
 
                     <Panel

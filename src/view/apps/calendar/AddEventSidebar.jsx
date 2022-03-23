@@ -34,9 +34,9 @@ const AddEventSidebar = (props) => {
   const [desc, setDesc] = useState("");
   const [title, setTitle] = useState("");
   const [allDay, setAllDay] = useState(false);
-  const [endPicker, setEndPicker] = useState(new Date());
-  const [startPicker, setStartPicker] = useState(new Date());
-  const [value, setValue] = useState([{ value: "Presenting", label: "Presenting" }]);
+  const [endPicker, setEndPicker] = useState();
+  const [startPicker, setStartPicker] = useState();
+  const [value, setValue] = useState([{ value: "Comming", label: "Comming" }]);
 
   const options = [
     { value: "Complete", label: "Complete", badge: "#00F7BF" },
@@ -69,6 +69,7 @@ const AddEventSidebar = (props) => {
     dispatch(addEvent(obj));
     refetchEvents();
     handleCancel();
+    console.log(obj);
   };
 
   // Reset Input Values on Close
@@ -76,9 +77,9 @@ const AddEventSidebar = (props) => {
     dispatch(selectEvent({}));
     setTitle("");
     setDesc("");
-    setValue([{ value: "Presenting", label: "Presenting" }]);
-    setStartPicker(new Date());
-    setEndPicker(new Date());
+    setValue([{ value: "Comming", label: "Comming" }]);
+    setStartPicker();
+    setEndPicker();
     setIsModalVisible(false);
   };
 
@@ -301,11 +302,12 @@ const AddEventSidebar = (props) => {
             name="startDate"
             style={{ width: "100%" }}
             className="hp-mb-16 hp-mr-16"
-            onChange={(date) => setStartPicker(date)}
-            defaultValue={moment(startPicker, "d M Y - H:i K")}
+            onChange={(date, dateString) => setStartPicker(dateString)}
             format="YYYY-MM-DD HH:mm"
-            renderExtraFooter={() => "extra footer"}
-            showTime={{ format: 'HH:mm' }}
+            showTime={{ format: "HH:mm" }}
+            disabledDate={(current) => {
+              return current && current < moment().add(-1, "day");
+            }}
           />
         </Form.Item>
 
@@ -329,16 +331,18 @@ const AddEventSidebar = (props) => {
             name="endDate"
             style={{ width: "100%" }}
             className="hp-mb-16 hp-mr-16"
-            onChange={(date) => setEndPicker(date)}
-            defaultValue={moment(endPicker, "d M Y - H:i K")}
+            onChange={(date, dateString) => setEndPicker(dateString)}
             format="YYYY-MM-DD HH:mm"
-            renderExtraFooter={() => "extra footer"}
-            showTime={{ format: 'HH:mm' }}
+            showTime={{ format: "HH:mm" }}
+            disabledDate={(current) => {
+              return current && current < moment().add(-1, "day");
+            }}
           />
         </Form.Item>
 
-        <Form.Item label="Event :">
+        {/* <Form.Item label="Event :">
           <Select
+            disabled={ture}
             id="label"
             value={value}
             options={options}
@@ -349,7 +353,7 @@ const AddEventSidebar = (props) => {
               Option: OptionComponent,
             }}
           />
-        </Form.Item>
+        </Form.Item> */}
 
         <Form.Item label="Description :">
           <TextArea

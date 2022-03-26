@@ -159,6 +159,7 @@ const AddEventSidebar = (props) => {
               handleResetInputValues();
             }}
             type="primary"
+            htmlType="submit"
             block
           >
             Add
@@ -170,6 +171,7 @@ const AddEventSidebar = (props) => {
         <Fragment>
           <Button
             type="primary"
+            htmlType="submit"
             onClick={() => {
               setIsModalVisible(true);
               handleResetInputValues();
@@ -232,6 +234,10 @@ const AddEventSidebar = (props) => {
     </h5>
   );
 
+  const onFinish = (values) => {
+    console.log("dats", values);
+  };
+
   return (
     <Modal
       visible={isModalVisible}
@@ -260,6 +266,7 @@ const AddEventSidebar = (props) => {
     >
       <Form
         layout="vertical"
+        onFinish={onFinish}
         onSubmit={handleSubmit(() => {
           if (
             isObjEmpty(selectedEvent) ||
@@ -271,7 +278,10 @@ const AddEventSidebar = (props) => {
           }
         })}
       >
-        <Form.Item label="Event Title :">
+        <Form.Item
+          label="Event Title :"
+          rules={[{ required: true, message: "This is required!" }]}
+        >
           <Input
             id="title"
             name="title"
@@ -282,7 +292,10 @@ const AddEventSidebar = (props) => {
           />
         </Form.Item>
 
-        <Form.Item label="From :">
+        <Form.Item
+          label="From :"
+          rules={[{ required: true, message: "This is required!" }]}
+        >
           {/* <Flatpickr
             required
             id="startDate"
@@ -311,7 +324,10 @@ const AddEventSidebar = (props) => {
           />
         </Form.Item>
 
-        <Form.Item label="To :">
+        <Form.Item
+          label="To :"
+          rules={[{ required: true, message: "This is required!" }]}
+        >
           {/* <Flatpickr
             required
             id="endDate"
@@ -355,7 +371,10 @@ const AddEventSidebar = (props) => {
           />
         </Form.Item> */}
 
-        <Form.Item label="Description :">
+        <Form.Item
+          label="Description :"
+          rules={[{ required: true, message: "This is required!" }]}
+        >
           <TextArea
             style={{ width: "100%" }}
             type="textarea"

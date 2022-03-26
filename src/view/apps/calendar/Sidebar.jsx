@@ -31,7 +31,7 @@ const Sidebar = (props) => {
       <Col span={24}>
         <h3>Calendar</h3>
 
-        {pathname == "/apps/calendar" ? (
+        {pathname != "/pages/landing" ? (
           <Button
             className="hp-mt-16"
             type="primary"

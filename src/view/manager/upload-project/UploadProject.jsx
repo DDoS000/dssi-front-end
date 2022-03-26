@@ -25,6 +25,7 @@ import {
 import { IoCloudDone } from "react-icons/io5";
 
 import { build } from "./build";
+import '../../../assets/less/manager/upload-project/terminal.less'
 
 import illustration from "../../../assets/images/apps/contact/upload-project.svg";
 
@@ -43,7 +44,7 @@ export default function UploadProject() {
     fontFamily: `'Fira Mono', monospace`,
     fontSize: 14,
     fontWeight: 400,
-    rendererType: "canvas", // canvas 或者 dom
+    // rendererType: "canvas", // canvas 或者 dom
   });
 
   const cleanTerminal = (terminalContainer) => {
@@ -134,16 +135,9 @@ export default function UploadProject() {
       openInitTerminal();
 
       build.split("\n").map((item, key) => {
-        console.log(typeof item);
         term.writeln(item);
-        // console.log(item);
       });
 
-      // term.writeln("Welcome to xterm.js");
-      // term.writeln(
-      //   "This is a local terminal with a real data stream in the back-end."
-      // );
-      // term.writeln("");
     } else {
       setCollapse(null);
     }

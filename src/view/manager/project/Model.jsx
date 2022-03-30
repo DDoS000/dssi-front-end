@@ -14,9 +14,13 @@ import {
 import { useDispatch } from "react-redux";
 import { addUser } from "../../../redux/contact/contactActions";
 import { PaperFail } from "react-iconly";
+import { useState } from "react";
 
 export default function Newproject({ open, toggleSidebar }) {
   const { Option } = Select;
+  const [disabledAdd, setDisabledAdd] = useState(false);
+  const [addOrclose, setAddOrclose] = useState("Add");
+  const [widthInput, setWidthInput] = useState("75%");
 
   const [form] = Form.useForm();
 
@@ -25,12 +29,16 @@ export default function Newproject({ open, toggleSidebar }) {
 
   // Form Finish
   const onFinish = (values) => {
-    // toggleSidebar();
     const service = [];
     service.push(values.service1);
-    values.service2.forEach((PS) => {
-      service.push(PS);
-    });
+    const service2 = values.service2;
+    if (service2 !== undefined) {
+      if (service2.length > 0) {
+        service2.forEach((PS) => {
+          service.push(PS);
+        });
+      }
+    }
     const data = [
       {
         name: values.name,
@@ -39,14 +47,26 @@ export default function Newproject({ open, toggleSidebar }) {
       },
     ];
     console.log("data", data);
+    setDisabledAdd(true);
+    setWidthInput("25%");
+    if (disabledAdd == false) {
+      setAddOrclose("Cancel");
+    }
+  };
+
+  const onCancel = () => {
     form.resetFields();
+    toggleSidebar();
+    setAddOrclose("Add");
+    setDisabledAdd(false);
+    setWidthInput("75%");
   };
 
   return (
     <Modal
       title="Add Project"
       visible={open}
-      onCancel={toggleSidebar}
+      onCancel={onCancel}
       footer={null}
       bodyStyle={{ padding: 24 }}
     >
@@ -64,13 +84,13 @@ export default function Newproject({ open, toggleSidebar }) {
               label="Name"
               rules={[{ required: true, message: "This is required!" }]}
             >
-              <Input />
+              <Input disabled={disabledAdd} />
             </Form.Item>
           </Col>
 
           <Col span={24}>
             <Form.Item name="description" label="Description">
-              <Input.TextArea />
+              <Input.TextArea disabled={disabledAdd} />
             </Form.Item>
           </Col>
 
@@ -86,6 +106,7 @@ export default function Newproject({ open, toggleSidebar }) {
                     placeholder="Select a port"
                     className="select-after"
                     style={{ width: "25%" }}
+                    disabled={disabledAdd}
                   >
                     <Option value="public">Public</Option>
                     <Option value="private">Private</Option>
@@ -98,11 +119,27 @@ export default function Newproject({ open, toggleSidebar }) {
                     { required: true, message: "Name Service is required" },
                   ]}
                 >
-                  <Input style={{ width: "75%" }} placeholder="Frontend" />
+                  <Input
+                    disabled={disabledAdd}
+                    style={{ width: widthInput }}
+                    placeholder="Frontend"
+                  />
                 </Form.Item>
+                {disabledAdd == true ? (
+                  <Input
+                    addonBefore="Port"
+                    defaultValue="Port Number"
+                    disabled={disabledAdd}
+                    style={{
+                      width: "45%",
+                      marginLeft: "5%",
+                    }}
+                  />
+                ) : null}
               </Input.Group>
             </Form.Item>
           </Col>
+
           <Col span={24}>
             <Form.List name={["service2"]}>
               {(fields, { add, remove }, { errors }) => (
@@ -130,6 +167,7 @@ export default function Newproject({ open, toggleSidebar }) {
                                   placeholder="Select a port"
                                   className="select-after"
                                   style={{ width: "25%" }}
+                                  disabled={disabledAdd}
                                 >
                                   <Option value="public">Public</Option>
                                   <Option value="private">Private</Option>
@@ -145,24 +183,46 @@ export default function Newproject({ open, toggleSidebar }) {
                                   },
                                 ]}
                               >
-                                <Input style={{ width: "75%" }} />
+                                <Input
+                                  disabled={disabledAdd}
+                                  style={{ width: widthInput }}
+                                />
                               </Form.Item>
+                              {disabledAdd == true ? (
+                                <Input
+                                  addonBefore="Port"
+                                  defaultValue="Port Number"
+                                  disabled={disabledAdd}
+                                  style={{
+                                    width: "45%",
+                                    marginLeft: "5%",
+                                  }}
+                                />
+                              ) : null}
                             </Input.Group>
                           </Form.Item>
                         </Col>
-                        <Col span={1} offset={1}>
-                          <PaperFail
-                            set="curved"
-                            className="remix-icon"
-                            primaryColor="red"
-                          />
-                        </Col>
+                        {disabledAdd == false ? (
+                          <Col span={1} offset={1}>
+                            <PaperFail
+                              set="curved"
+                              className="remix-icon"
+                              primaryColor="red"
+                              onClick={() => remove(name)}
+                            />
+                          </Col>
+                        ) : null}
                       </Row>
                     </Form.Item>
                   ))}
                   {fields.length < 2 ? (
                     <Form.Item>
-                      <Button type="dashed" onClick={() => add()} block>
+                      <Button
+                        disabled={disabledAdd}
+                        type="dashed"
+                        onClick={() => add()}
+                        block
+                      >
                         Add Name Service
                       </Button>
                       <Form.ErrorList errors={errors} />
@@ -176,9 +236,20 @@ export default function Newproject({ open, toggleSidebar }) {
           <Divider />
 
           <Col span={24}>
-            <Button type="primary" htmlType="submit" block>
-              Add
-            </Button>
+            {addOrclose == "Cancel" ? (
+              <Button
+                onClick={() => onCancel()}
+                type="primary"
+                // htmlType="submit"
+                block
+              >
+                {addOrclose}
+              </Button>
+            ) : (
+              <Button type="primary" htmlType="submit" block>
+                {addOrclose}
+              </Button>
+            )}
           </Col>
         </Row>
       </Form>

@@ -35,14 +35,14 @@ export default function SettingPtoject(props) {
         });
       }
     }
-    datas = [
+    setDatas([
       {
         id: values.id,
         name: values.name,
         description: values.description,
         service: service,
       },
-    ];
+    ]);
     console.log("datas", datas);
   };
 
@@ -95,7 +95,11 @@ export default function SettingPtoject(props) {
                     noStyle
                     rules={[{ required: true, message: "Port is required" }]}
                   >
-                    <Select className="select-after" style={{ width: "25%" }}>
+                    <Select
+                      placeholder="Select a port"
+                      className="select-after"
+                      style={{ width: "25%" }}
+                    >
                       <Option value="public">Public</Option>
                       <Option value="private">Private</Option>
                     </Select>
@@ -143,6 +147,7 @@ export default function SettingPtoject(props) {
                                   ]}
                                 >
                                   <Select
+                                    placeholder="Select a port"
                                     className="select-after"
                                     style={{ width: "25%" }}
                                   >

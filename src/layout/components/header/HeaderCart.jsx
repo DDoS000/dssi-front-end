@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from 'react-redux';
-import { adjustItemQty, loadCurrentItem, removeFromCart } from '../../../redux/ecommerce/ecommerceActions';
+// import { adjustItemQty, loadCurrentItem, removeFromCart } from '../../../redux/ecommerce/ecommerceActions';
 
 import { Button, Row, Col, Divider, Tag, InputNumber, Empty } from "antd";
 import { Buy } from "react-iconly";
 
-import EmptyImage from '../../../assets/images/apps/ecommerce/checkout-empty.svg';
+// import EmptyImage from '../../../assets/images/apps/ecommerce/checkout-empty.svg';
 import Avatar from "antd/lib/avatar/avatar";
 
 export default function HeaderCart() {
   // Basket Dropdwon
   const dispatch = useDispatch()
-  const cart = useSelector(state => state.ecommerce.cart)
+  // const cart = useSelector(state => state.ecommerce.cart)
   const [totalItem, setTotalItem] = useState(0);
 
   useEffect(() => {

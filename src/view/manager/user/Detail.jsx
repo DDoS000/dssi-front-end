@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useParams, Link, useHistory } from "react-router-dom";
 
 // Redux
-import { deleteUser, getUser } from "../../../redux/contact/contactActions";
+import { deleteUser, getUser } from "../../../redux/users/usersActions";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Layout, Row, Col, Avatar, Button, Divider, Card, Popconfirm } from "antd";
@@ -63,7 +63,7 @@ export default function Detail({ selectedUser }) {
                 </Col>
 
                 <Col span={24} className="hp-mt-16 hp-text-center">
-                  <h4>{selectedUser.fullName}</h4>
+                  <h4>{selectedUser.fullname}</h4>
                 </Col>
 
                 <Col span={24} className="hp-text-center">
@@ -72,7 +72,7 @@ export default function Detail({ selectedUser }) {
 
                 <Col span={24} className="hp-mt-16">
                   <Popconfirm
-                    title="Are you sure to delete this contact?"
+                    title="Are you sure to delete this User?"
                     onConfirm={() => confirm(selectedUser.id)}
                     okText="Yes"
                     cancelText="No"
@@ -81,7 +81,7 @@ export default function Detail({ selectedUser }) {
                     }
                   >
                     <Button block type="primary">
-                      Delete Contact
+                      Delete User
                     </Button>
                   </Popconfirm>
                 </Col>
@@ -131,7 +131,7 @@ export default function Detail({ selectedUser }) {
 
           <Row align="middle" justify="space-between">
             <Col md={12} span={24}>
-              <h3>Contact</h3>
+              <h3>Personal Informations</h3>
             </Col>
 
             <Col
@@ -141,7 +141,7 @@ export default function Detail({ selectedUser }) {
               <ul>
                 <li>
                   <span className={listTitle}>Full Name</span>
-                  <span className={listResult}>{selectedUser.fullName}</span>
+                  <span className={listResult}>{selectedUser.fullname}</span>
                 </li>
 
                 <li className="hp-mt-18">
@@ -153,13 +153,6 @@ export default function Detail({ selectedUser }) {
                   <span className={listTitle}>Email</span>
                   <a className={listResult} href={"mailto:" + selectedUser.email}>
                     {selectedUser.email}
-                  </a>
-                </li>
-
-                <li className="hp-mt-18">
-                  <span className={listTitle}>Phone</span>
-                  <a className={listResult} href={"tel:" + selectedUser.contact}>
-                    {selectedUser.contact}
                   </a>
                 </li>
               </ul>

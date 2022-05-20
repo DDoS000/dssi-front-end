@@ -2,7 +2,7 @@ import { Modal, Col, Row, Divider, Input, Form, Button, Select } from "antd";
 import React, { useState, useEffect } from "react";
 // Redux
 import { useDispatch } from "react-redux";
-import { addUser } from "../../../redux/contact/contactActions";
+// import { addUser } from "../../../redux/contact/contactActions";
 import { PaperFail } from "react-iconly";
 
 export default function SettingPtoject(props) {

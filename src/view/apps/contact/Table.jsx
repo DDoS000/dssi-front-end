@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 // Redux
-import { getAllData, getData } from "../../../redux/contact/contactActions";
+// import { getAllData, getData } from "../../../redux/contact/contactActions";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Row, Col, Button, Input, Table, Card } from "antd";

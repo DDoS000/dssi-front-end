@@ -73,23 +73,6 @@
     },
 
     {
-        "title": "Ecommerce Shop",
-        "url": "/apps/ecommerce/shop"
-    },
-    {
-        "title": "Ecommerce Wishlist",
-        "url": "/apps/ecommerce/wishlist"
-    },
-    {
-        "title": "Ecommerce Detail",
-        "url": "/apps/ecommerce/product-detail/0"
-    },
-    {
-        "title": "Ecommerce Checkout",
-        "url": "/apps/ecommerce/checkout"
-    },
-
-    {
         "title": "404 Error Page",
         "url": "/pages/error-404"
     },

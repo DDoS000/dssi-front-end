@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 // Redux
-import { getAllData, getData } from "../../../redux/contact/contactActions";
+import { getAllData, getData } from "../../../redux/users/usersActions";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Row, Col, Button, Input, Table, Card } from "antd";
@@ -10,7 +10,7 @@ import { RiUserAddLine } from "react-icons/ri";
 
 import { columns } from "./columns";
 import AddNewUser from "./Modal";
-import BreadCrumbs from '../../../layout/components/content/breadcrumbs';
+import BreadCrumbs from "../../../layout/components/content/breadcrumbs";
 
 export default function UsersList() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -18,7 +18,7 @@ export default function UsersList() {
 
   // Redux
   const dispatch = useDispatch();
-  const store = useSelector((state) => state.contact);
+  const store = useSelector((state) => state.users);
 
   // Sidebar
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
@@ -31,7 +31,7 @@ export default function UsersList() {
     );
   };
 
-  // Get Data 
+  // Get Data
   useEffect(() => {
     dispatch(getAllData());
 
@@ -48,8 +48,8 @@ export default function UsersList() {
       key: i,
       avatar: [store.data[i].id, store.data[i].avatar],
       username: store.data[i].username,
-      name: store.data[i].name,
-      role: store.data[i].role,
+      fullname: store.data[i].fullname,
+      role: store.data[i].roles,
       email: store.data[i].email,
     });
   }
@@ -69,7 +69,13 @@ export default function UsersList() {
               <Col xs={24} md={12} xl={8}>
                 <Input
                   placeholder="Search"
-                  prefix={<User set="curved" size={16} className="hp-text-color-black-80" />}
+                  prefix={
+                    <User
+                      set="curved"
+                      size={16}
+                      className="hp-text-color-black-80"
+                    />
+                  }
                   value={searchTerm}
                   onChange={(e) => handleFilter(e.target.value)}
                 />
@@ -97,7 +103,7 @@ export default function UsersList() {
             pagination={{ defaultPageSize: 6 }}
             columns={columns}
             dataSource={data}
-            scroll={{ x: 'calc(500px + 50%)' }}
+            scroll={{ x: "calc(500px + 50%)" }}
           />
         </Col>
 
@@ -105,4 +111,4 @@ export default function UsersList() {
       </Card>
     </>
   );
-};
+}

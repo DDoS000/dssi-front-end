@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 import store from "../../../redux/store";
-import { getUser, deleteUser } from "../../../redux/contact/contactActions";
+// import { getUser, deleteUser } from "../../../redux/contact/contactActions";
 
 import { Avatar, Popconfirm, Tag } from "antd";
 import { User, Delete } from "react-iconly";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Modal,
   Col,
@@ -18,15 +18,15 @@ import {
 import { RiCheckboxCircleLine, RiCloseCircleLine } from "react-icons/ri";
 
 // Redux
-import { useDispatch } from "react-redux";
-import { addUser } from "../../../redux/contact/contactActions";
+import { useDispatch, useSelector } from "react-redux";
+import { createUser, clearUserCreate } from "../../../redux/users/usersActions";
 import { Delete, Edit } from "react-iconly";
 import fileFormat from "../../../assets/files/format-create-user.xlsx";
 
 // Export data
 import ExcelExport from "export-xlsx";
 import { SETTINGS_FOR_EXPORT } from "./setting.jsx";
-import * as XLSX from 'xlsx/xlsx.mjs';
+import * as XLSX from "xlsx/xlsx.mjs";
 
 export default function AddNewUser({ open, toggleSidebar }) {
   const { Option } = Select;
@@ -35,8 +35,9 @@ export default function AddNewUser({ open, toggleSidebar }) {
   const originData = [];
 
   const [form] = Form.useForm();
-  const [data, setData] = useState(originData);
+  const [data, setData] = useState([]);
   const [editingKey, setEditingKey] = useState("");
+  const [responData, setResponData] = useState([]);
   const [addStatus, setAddStatus] = useState(false);
 
   const isEditing = (record) => record.key === editingKey;
@@ -45,7 +46,7 @@ export default function AddNewUser({ open, toggleSidebar }) {
   const edit = (record) => {
     form.setFieldsValue({
       username: "",
-      name: "",
+      fullname: "",
       role: "",
       email: "",
       ...record,
@@ -134,8 +135,8 @@ export default function AddNewUser({ open, toggleSidebar }) {
       width: "25%",
     },
     {
-      title: "Name",
-      dataIndex: "name",
+      title: "Fullname",
+      dataIndex: "fullname",
       editable: true,
       width: "25%",
     },
@@ -217,7 +218,7 @@ export default function AddNewUser({ open, toggleSidebar }) {
     const newData = {
       key: count,
       username: "",
-      name: "",
+      fullname: "",
       role: "",
       email: "",
     };
@@ -250,6 +251,11 @@ export default function AddNewUser({ open, toggleSidebar }) {
       width: "25%",
     },
     {
+      title: "FullName",
+      dataIndex: "fullname",
+      width: "25%",
+    },
+    {
       title: "Password",
       dataIndex: "password",
       width: "25%",
@@ -261,15 +267,6 @@ export default function AddNewUser({ open, toggleSidebar }) {
     },
   ];
 
-  const responData = [
-    {
-      key: "0",
-      username: "John Brown 0",
-      password: "32",
-      status: "London, Park Lane no. 0",
-    },
-  ];
-
   const exportData = [
     {
       exportData: responData,
@@ -278,77 +275,92 @@ export default function AddNewUser({ open, toggleSidebar }) {
   // Redux
   const dispatch = useDispatch();
 
+  const createUserData = useSelector((state) => state.users?.userCreate);
+
+  useEffect(() => {
+    if (createUserData.length !== 0) {
+      setResponData(createUserData);
+    }
+  }, [createUserData.length]);
+
+
   // Form Finish
   const onFinish = (values) => {
     // toggleSidebar();
-    console.log(values);
-    setAddStatus(!addStatus);
+    // console.log("values", values);
     setData(originData);
+    // console.log(values);
 
-    // dispatch(
-    //   addUser({
-    //     avatar: values.name,
-    //     fullName: values.name,
-    //     username: values.username,
-    //     role: values.role,
-    //     email: values.email,
-    //     contact: values.phone,
-    //     status: values.status,
-    //     informationText: values.informationText,
-    //     aboutText: values.aboutText,
-    //   })
-    // );
+    dispatch(createUser(values));
+
+    setAddStatus(!addStatus);
   };
 
   // Export Table
   const exportTable = () => {
     const excelExport = new ExcelExport();
-    console.log(exportData);
+    // console.log(exportData);
     excelExport.downloadExcel(SETTINGS_FOR_EXPORT, exportData);
     setAddStatus(!addStatus);
+    dispatch(clearUserCreate());
+    setResponData([]);
   };
 
   // Upload File
   const props = {
     maxCount: 1,
-    accept:".xlsx",
-    showUploadList : false,
+    accept: ".xlsx",
+    showUploadList: false,
     name: "file",
     headers: {
-      authorization: 'authorization-text',
+      authorization: "authorization-text",
     },
-    beforeUpload: file => {
+    beforeUpload: (file) => {
       const reader = new FileReader();
 
-    reader.onload = function (e) {
+      reader.onload = function (e) {
         var data = e.target.result;
-        let readedData = XLSX.read(data, {type: 'binary'});
+        let readedData = XLSX.read(data, { type: "binary" });
         const wsname = readedData.SheetNames[0];
         const ws = readedData.Sheets[wsname];
 
         /* Convert array to json*/
-        const dataParse = XLSX.utils.sheet_to_json(ws, {header:1});
-        let last_data = []
-        let rount = 0
-        for (const datas of dataParse.slice(1)){
-          last_data.push({
-            key: rount++,
-            username: datas[0],
-            name: datas[1],
-            role: datas[2],
-            email: datas[3],
-          });
+        const dataParse = XLSX.utils.sheet_to_json(ws, { header: 1 });
+        let last_data = [];
+        let rount = count;
+        if (
+          dataParse[0][0] === "username" &&
+          dataParse[0][1] === "fullname" &&
+          dataParse[0][2] === "role" &&
+          dataParse[0][3] === "email"
+        ) {
+          for (const datas of dataParse.slice(1)) {
+            last_data.push({
+              key: rount++,
+              username: datas[0],
+              fullname: datas[1],
+              role: datas[2],
+              email: datas[3],
+            });
+          }
+          setData(last_data);
+          setCount(rount);
+        } else {
+          // message.error({
+          //   content: info.file.name + " file upload failed.",
+          //   icon: <RiCloseCircleLine className="remix-icon" />,
+          // });
+          message.error({ content: "Invalid format!", key: "file",  icon: <RiCloseCircleLine className="remix-icon" />, duration: 1 });
         }
-        setData(last_data)
-    };
-    reader.readAsBinaryString(file)
+      };
+      reader.readAsBinaryString(file);
 
       // Prevent upload
       return false;
     },
     onChange(info) {
       if (info.file.status !== "uploading") {
-        console.log(info.file, info.fileList);
+        // console.log(info.file, info.fileList);
       }
       if (info.file.status === "done") {
         message.success({

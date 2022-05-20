@@ -3,7 +3,7 @@ import MaskedInput from 'antd-mask-input'
 
 // Redux
 import { useDispatch } from "react-redux";
-import { addUser } from "../../../redux/contact/contactActions";
+// import { addUser } from "../../../redux/contact/contactActions";
 
 export default function AddNewUser({ open, toggleSidebar }) {
   const { Option } = Select;

@@ -2,7 +2,6 @@ import { Fragment, useState } from "react";
 
 import Select, { components } from "react-select";
 import "flatpickr/dist/themes/light.css";
-import Flatpickr from "react-flatpickr";
 import { useForm } from "react-hook-form";
 import { RiCloseFill } from "react-icons/ri";
 import { DatePicker, Button, Input, Form, Modal, Badge, Row, Col } from "antd";
@@ -296,19 +295,7 @@ const AddEventSidebar = (props) => {
           label="From :"
           rules={[{ required: true, message: "This is required!" }]}
         >
-          {/* <Flatpickr
-            required
-            id="startDate"
-            name="startDate"
-            style={{ width: "100%" }}
-            onChange={(date) => setStartPicker(date[0])}
-            value={startPicker}
-            options={{
-              enableTime: allDay === false,
-              dateFormat: "d M Y - H:i K",
-              static: true,
-            }}
-          /> */}
+
           <DatePicker
             required
             id="startDate"
@@ -321,6 +308,7 @@ const AddEventSidebar = (props) => {
             disabledDate={(current) => {
               return current && current < moment().add(-1, "day");
             }}
+            
           />
         </Form.Item>
 
@@ -328,19 +316,6 @@ const AddEventSidebar = (props) => {
           label="To :"
           rules={[{ required: true, message: "This is required!" }]}
         >
-          {/* <Flatpickr
-            required
-            id="endDate"
-            name="endDate"
-            style={{ width: "100%" }}
-            onChange={(date) => setEndPicker(date[0])}
-            value={endPicker}
-            options={{
-              enableTime: allDay === false,
-              dateFormat: "d M Y - H:i K",
-              static: true,
-            }}
-          /> */}
           <DatePicker
             required
             id="endDate"
@@ -356,9 +331,8 @@ const AddEventSidebar = (props) => {
           />
         </Form.Item>
 
-        {/* <Form.Item label="Event :">
+        <Form.Item label="Project :">
           <Select
-            disabled={ture}
             id="label"
             value={value}
             options={options}
@@ -369,7 +343,7 @@ const AddEventSidebar = (props) => {
               Option: OptionComponent,
             }}
           />
-        </Form.Item> */}
+        </Form.Item>
 
         <Form.Item
           label="Description :"

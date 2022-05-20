@@ -6,7 +6,7 @@ export default function schedule() {
 
   return (
     <Switch>
-      <Route exact path="/admin/main/schedule">
+      <Route exact path="/admin/manager/project">
         <Table />
       </Route>
     </Switch>

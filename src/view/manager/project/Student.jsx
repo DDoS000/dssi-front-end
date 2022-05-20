@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // Redux
-import { getAllData, getData } from "../../../redux/contact/contactActions";
+// import { getAllData, getData } from "../../../redux/contact/contactActions";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Row, Col, Button, Input, Table, Card } from "antd";

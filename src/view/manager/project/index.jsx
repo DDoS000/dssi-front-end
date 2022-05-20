@@ -6,7 +6,7 @@ import Admin from "./Admin";
 import Student from "./Student";
 
 export default function Project() {
-  const selectedProject = useSelector((state) => state.contact.selectedUser);
+  // const selectedProject = useSelector((state) => state.contact.selectedUser);
   return (
     <Switch>
       <Route path="/admin/manager/project">

@@ -5,8 +5,8 @@ import { useSelector } from "react-redux";
 import Table from "./Table";
 import Detail from "./Detail";
 
-export default function Contact() {
-  const selectedUser = useSelector((state) => state.contact.selectedUser);
+export default function user() {
+  const selectedUser = useSelector((state) => state.users.selectedUser);
 
   return (
     <Switch>

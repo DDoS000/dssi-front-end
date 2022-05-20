@@ -69,8 +69,8 @@ export default function Calender() {
     extendedProps: {
       calendar: "",
       guests: [],
-      location: "",
       description: "",
+      location: "",
     },
   };
 

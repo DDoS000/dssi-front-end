@@ -1,15 +1,22 @@
 import { Link } from "react-router-dom";
 
 import store from "../../../redux/store";
-import { getUser, deleteUser } from "../../../redux/contact/contactActions";
-
+import { getUser, deleteUser } from "../../../redux/users/usersActions";
+import { message as messages } from "antd";
 import { Avatar, Popconfirm, Tag } from "antd";
 import { User, Delete } from "react-iconly";
 import { RiErrorWarningLine } from "react-icons/ri";
 
 // Popconfirm
 function confirm(dataId) {
-  store.dispatch(deleteUser(dataId));
+  store
+    .dispatch(deleteUser(dataId))
+    .then(() => {
+      messages.success({ content: "Success!", key: "delet", duration: 2 });
+    })
+    .catch(() => {
+      messages.error({ content: "Error!", key: "delet", duration: 1 });
+    });
 }
 
 export const columns = [
@@ -43,8 +50,8 @@ export const columns = [
     width: "25%",
   },
   {
-    title: "Name",
-    dataIndex: "name",
+    title: "Fullanme",
+    dataIndex: "fullname",
     width: "25%",
   },
   {
@@ -52,9 +59,9 @@ export const columns = [
     dataIndex: "role",
     width: "15%",
     render: (dataIndex) => {
-      if (dataIndex === "admin") {
+      if (dataIndex === "ROLE_ADMIN") {
         return <Tag color="red">{dataIndex}</Tag>;
-      } else if (dataIndex === "student") {
+      } else if (dataIndex === "ROLE_STUDENT") {
         return <Tag color="green">{dataIndex}</Tag>;
       }
     },
@@ -70,7 +77,7 @@ export const columns = [
     render: (dataIndex) => (
       <Popconfirm
         placement="topLeft"
-        title="Are you sure to delete this contact?"
+        title="Are you sure to delete this users?"
         onConfirm={() => confirm(dataIndex[0])}
         okText="Yes"
         cancelText="No"

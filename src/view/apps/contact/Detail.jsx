@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useParams, Link, useHistory } from "react-router-dom";
 
 // Redux
-import { deleteUser, getUser } from "../../../redux/contact/contactActions";
+// import { deleteUser, getUser } from "../../../redux/contact/contactActions";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Layout, Row, Col, Avatar, Button, Divider, Card, Popconfirm } from "antd";

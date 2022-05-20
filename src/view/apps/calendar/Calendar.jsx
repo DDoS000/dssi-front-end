@@ -34,11 +34,12 @@ const Calendar = (props) => {
       start: "prev,next,title",
       end: "dayGridMonth,timeGridWeek,timeGridDay",
     },
-    editable: true,
+    editable: false,
     eventResizableFromStart: true,
     dragScroll: true,
-    dayMaxEvents: 2,
+    dayMaxEvents: 3,
     navLinks: true,
+    locale: 'th',
 
     eventClassNames({ event: calendarEvent }) {
       const colorName =

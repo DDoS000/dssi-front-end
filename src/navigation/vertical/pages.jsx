@@ -80,31 +80,31 @@ const pages = [
                 title: "Personel Information",
                 navLink: "/pages/profile/personel-information",
             },
-            {
-                id: "profile-notifications",
-                title: "Notifications",
-                navLink: "/pages/profile/notifications",
-            },
-            {
-                id: "profile-activity",
-                title: "Activity Monitor",
-                navLink: "/pages/profile/activity",
-            },
-            {
-                id: "profile-security",
-                title: "Security Settings",
-                navLink: "/pages/profile/security",
-            },
+            // {
+            //     id: "profile-notifications",
+            //     title: "Notifications",
+            //     navLink: "/pages/profile/notifications",
+            // },
+            // {
+            //     id: "profile-activity",
+            //     title: "Activity Monitor",
+            //     navLink: "/pages/profile/activity",
+            // },
+            // {
+            //     id: "profile-security",
+            //     title: "Security Settings",
+            //     navLink: "/pages/profile/security",
+            // },
             {
                 id: "profile-password-change",
                 title: "Password Change",
                 navLink: "/pages/profile/password-change",
             },
-            {
-                id: "profile-connect-with-social",
-                title: "Connect with Social",
-                navLink: "/pages/profile/connect-with-social",
-            },
+            // {
+            //     id: "profile-connect-with-social",
+            //     title: "Connect with Social",
+            //     navLink: "/pages/profile/connect-with-social",
+            // },
         ],
     },
     {

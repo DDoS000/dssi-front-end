@@ -1,10 +1,10 @@
-import api from "./api";
+import { instance_AUTH as api } from "./api";
 import TokenService from "./token.service";
 
 class AuthService {
   login(username, password) {
     return api
-      .post("/auth/api/auth/signin", {
+      .post("/api/auth/signin", {
         username,
         password
       })
@@ -21,13 +21,38 @@ class AuthService {
     TokenService.removeUser();
   }
 
-  register(username, fullname, email, password) {
-    return api.post("/auth/api/auth/signup", {
-      username,
-      fullname,
-      email,
-      password
+  createUser(user) {
+    return api.post("/api/auth/create_muti_user", {
+      user
     });
+  }
+
+  GetUser() {
+    return api.get("/api/users")
+  }
+
+  GetUserFilter(filter) {
+    return api.get("/api/users/filter", { params: { q: filter.q } })
+  }
+
+  GetUserById(id) {
+    return api.get("/api/users/user", { params: { id: id } })
+  }
+
+  DeleteUser(id) {
+    return api.delete("/api/users/delete", {
+      data: {
+        id: id
+      }
+    })
+  }
+
+  ChangePassword(id, old_password, new_password) {
+    return api.post("/api/auth/changepassword", {
+      id,
+      old_password,
+      new_password
+    })
   }
 }
 

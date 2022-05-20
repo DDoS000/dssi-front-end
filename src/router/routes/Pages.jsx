@@ -434,46 +434,46 @@ const PagesRoutes = [
     component: lazy(() => import("../../view/apps/calendar")),
     layout: "VerticalLayout",
   },
-  {
-    path: "/apps/contact",
-    component: lazy(() => import("../../view/apps/contact")),
-    layout: "VerticalLayout",
-  },
-  {
-    path: "/apps/contact/contact-detail",
-    component: lazy(() => import("../../view/apps/contact")),
-    layout: "VerticalLayout",
-  },
-  {
-    path: "/apps/ecommerce/shop",
-    component: lazy(() => import("../../view/apps/ecommerce")),
-    layout: "VerticalLayout",
-  },
-  {
-    path: "/apps/ecommerce/wishlist",
-    component: lazy(() => import("../../view/apps/ecommerce")),
-    layout: "VerticalLayout",
-  },
-  {
-    path: "/apps/ecommerce/product-detail",
-    component: lazy(() => import("../../view/apps/ecommerce")),
-    layout: "VerticalLayout",
-  },
-  {
-    path: "/apps/ecommerce/checkout",
-    component: lazy(() => import("../../view/apps/ecommerce")),
-    layout: "VerticalLayout",
-  },
-  {
-    path: "/apps/ecommerce/address-information",
-    component: lazy(() => import("../../view/apps/ecommerce")),
-    layout: "VerticalLayout",
-  },
-  {
-    path: "/apps/ecommerce/payment",
-    component: lazy(() => import("../../view/apps/ecommerce")),
-    layout: "VerticalLayout",
-  },
+  // {
+  //   path: "/apps/contact",
+  //   component: lazy(() => import("../../view/apps/contact")),
+  //   layout: "VerticalLayout",
+  // },
+  // {
+  //   path: "/apps/contact/contact-detail",
+  //   component: lazy(() => import("../../view/apps/contact")),
+  //   layout: "VerticalLayout",
+  // },
+  // {
+  //   path: "/apps/ecommerce/shop",
+  //   component: lazy(() => import("../../view/apps/ecommerce")),
+  //   layout: "VerticalLayout",
+  // },
+  // {
+  //   path: "/apps/ecommerce/wishlist",
+  //   component: lazy(() => import("../../view/apps/ecommerce")),
+  //   layout: "VerticalLayout",
+  // },
+  // {
+  //   path: "/apps/ecommerce/product-detail",
+  //   component: lazy(() => import("../../view/apps/ecommerce")),
+  //   layout: "VerticalLayout",
+  // },
+  // {
+  //   path: "/apps/ecommerce/checkout",
+  //   component: lazy(() => import("../../view/apps/ecommerce")),
+  //   layout: "VerticalLayout",
+  // },
+  // {
+  //   path: "/apps/ecommerce/address-information",
+  //   component: lazy(() => import("../../view/apps/ecommerce")),
+  //   layout: "VerticalLayout",
+  // },
+  // {
+  //   path: "/apps/ecommerce/payment",
+  //   component: lazy(() => import("../../view/apps/ecommerce")),
+  //   layout: "VerticalLayout",
+  // },
 
   // PAGES
   {

@@ -3,10 +3,11 @@ const initialState = {
   data: [],
   total: 1,
   params: {},
+  userCreate: [],
   selectedUser: null,
 };
 
-const contactReducer = (state = initialState, action) => {
+const usersReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_ALL_DATA":
       return { ...state, allData: action.data };
@@ -24,13 +25,22 @@ const contactReducer = (state = initialState, action) => {
 
     case "ADD_USER":
       return { ...state };
+      
+    case "CHANGE_PASSWORD":
+      return { ...state };
+
+    case "CREATE_USER":
+      return { ...state, userCreate: action.userCreate };
 
     case "DELETE_USER":
       return { ...state };
+
+    case "CLEAR_USERCREATE":
+      return { ...state, userCreate: [] };
 
     default:
       return { ...state };
   }
 };
 
-export default contactReducer;
+export default usersReducer;

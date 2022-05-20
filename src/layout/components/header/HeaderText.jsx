@@ -13,15 +13,8 @@ export default function HeaderText() {
       <p className="hp-header-left-text-item hp-input-label hp-text-color-black-100 hp-text-color-dark-0 hp-ml-16 hp-mb-0">
         ยินดีต้อนรับเข้าสู่ระบบ 🎉 &nbsp;
         <span className="hp-font-weight-300 hp-text-color-danger-3">
-          future updates.
+          DSSI Cloud Server
         </span>
-        <a
-          href="https://trello.com/b/8ZRmDN5y/yoda-roadmap"
-          className="hp-ml-8 hp-text-color-black-60"
-          target="_blank"
-        >
-          <Upload set="curved" className="remix-icon hp-text-color-dark-5" />
-        </a>
       </p>
     </Col>
   );

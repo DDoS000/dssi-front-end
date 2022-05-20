@@ -76,8 +76,6 @@ export default function InfoProfile() {
             <Input />
           </Form.Item>
 
-
-
           <Row>
             <Col md={12} span={24} className="hp-pr-sm-0 hp-pr-12">
               <Button
@@ -187,10 +185,14 @@ export default function InfoProfile() {
               <span className={listTitle}>Email</span>
               <span className={listResult}>{user.email}</span>
             </li>
+
+            <li className="hp-mt-18">
+              <span className={listTitle}>Role</span>
+              <span className={listResult}>{user.roles[0]}</span>
+            </li>
           </ul>
         </Col>
       </Row>
-
       <Divider className={dividerClass} />
 
       {/* <Row align="middle" justify="space-between">

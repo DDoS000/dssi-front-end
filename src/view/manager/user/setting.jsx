@@ -21,6 +21,10 @@ export const SETTINGS_FOR_EXPORT = {
               key: 'username',
             },
             {
+              name: 'fullname',
+              key: 'fullname',
+            },
+            {
               name: 'password',
               key: 'password',
             },

@@ -40,7 +40,7 @@ export default function MenuFooter(props) {
       </Col>
 
       <Col>
-        <Link to="/pages/profile/security" onClick={props.onClose}>
+        <Link to="/pages/profile/personel-information" onClick={props.onClose}>
           <RiSettings3Line
             className="remix-icon hp-text-color-black-100 hp-text-color-dark-0"
             size={24}

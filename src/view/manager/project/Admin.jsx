@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 
 // Redux
-import { getAllData, getData } from "../../../redux/contact/contactActions";
+// import { getAllData, getData } from "../../../redux/contact/contactActions";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Row, Col, Card } from "antd";
 
 import BreadCrumbs from "../../../layout/components/content/breadcrumbs";
+
+import Table from "./Table";
 
 export default function Admin() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -28,7 +30,7 @@ export default function Admin() {
 
       <Card className="hp-contact-card hp-mb-32">
         <Col className="hp-contact-card hp-mt-32">
-          Project
+          <Table />
         </Col>
       </Card>
     </>

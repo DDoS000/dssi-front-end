@@ -88,7 +88,7 @@ export default function MenuProfile(props) {
             </Link>
           </Menu.Item>
 
-          <Menu.Item
+          {/* <Menu.Item
             key="2"
             icon={<Notification set="curved" className={menuIconClass} />}
             className={`
@@ -134,7 +134,7 @@ export default function MenuProfile(props) {
             onClick={props.onCloseDrawer}
           >
             <Link to="/pages/profile/security">Security Settings</Link>
-          </Menu.Item>
+          </Menu.Item> */}
 
           <Menu.Item
             key="5"
@@ -152,7 +152,7 @@ export default function MenuProfile(props) {
             <Link to="/pages/profile/password-change">Password Change</Link>
           </Menu.Item>
 
-          <Menu.Item
+          {/* <Menu.Item
             key="6"
             icon={<Heart set="curved" className={menuIconClass} />}
             className={`
@@ -169,7 +169,7 @@ export default function MenuProfile(props) {
             <Link to="/pages/profile/connect-with-social">
               Connect with Social
             </Link>
-          </Menu.Item>
+          </Menu.Item> */}
         </Menu>
       </div>
 

@@ -91,7 +91,7 @@ export default function UploadProject() {
       name: "Bunny Book",
       description:
         "A tiny social network (for bunnies), built with FastAPI and React+RxJs",
-      service: [{ port: "pubplic", service: "test1" }],
+      service: [{ port: "pubplic", service: "test1", port: 'number' }],
     },
   ];
 

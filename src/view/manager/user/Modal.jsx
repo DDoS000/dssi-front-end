@@ -286,11 +286,7 @@ export default function AddNewUser({ open, toggleSidebar }) {
 
   // Form Finish
   const onFinish = (values) => {
-    // toggleSidebar();
-    // console.log("values", values);
     setData(originData);
-    // console.log(values);
-
     dispatch(createUser(values));
 
     setAddStatus(!addStatus);

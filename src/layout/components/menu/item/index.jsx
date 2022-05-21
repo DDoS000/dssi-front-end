@@ -2,7 +2,6 @@ import React from "react";
 import { useLocation, Link } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
-import { loadCurrentItem } from "../../../../redux/ecommerce/ecommerceActions";
 
 import { Menu } from "antd";
 

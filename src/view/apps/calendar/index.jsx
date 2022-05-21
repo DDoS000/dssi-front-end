@@ -20,11 +20,13 @@ import {
   removeEvent,
 } from "../../../redux/calendar/calendarActions";
 
+import { fetchRegistry } from "../../../redux/registry/registryActions";
+
 // Colors
 const calendarsColor = {
   Complete: "complete",
   Presenting: "presenting",
-  Comming: "comming",
+  Coming: "coming",
 };
 
 const { Sider, Content } = Layout;
@@ -37,7 +39,11 @@ export default function Calender() {
   // Redux
   const dispatch = useDispatch();
   const store = useSelector((state) => state.calendar);
-  const customise = useSelector(state => state.customise)
+  const customise = useSelector((state) => state.customise);
+
+  useEffect(() => {
+    dispatch(fetchRegistry());
+  }, []);
 
   const showDrawer = () => {
     setIsDrawerVisible(true);

@@ -57,7 +57,7 @@ export default function SettingPtoject(props) {
   return (
     <Modal
       forceRender
-      title="Add Contact"
+      title="Edite Project"
       visible={open}
       onCancel={toggleSidebar}
       footer={null}
@@ -90,108 +90,17 @@ export default function SettingPtoject(props) {
             <Col span={24}>
               <Form.Item label="Name Service">
                 <Input.Group compact>
-                  <Form.Item
-                    name={["service1", "port"]}
-                    noStyle
-                    rules={[{ required: true, message: "Port is required" }]}
-                  >
-                    <Select
-                      placeholder="Select a port"
-                      className="select-after"
-                      style={{ width: "25%" }}
-                    >
-                      <Option value="public">Public</Option>
-                      <Option value="private">Private</Option>
-                    </Select>
+                  <Form.Item name={["service1", "port"]} noStyle>
+                    <Input style={{ width: "25%" }} disabled />
                   </Form.Item>
-                  <Form.Item
-                    name={["service1", "service"]}
-                    noStyle
-                    rules={[
-                      {
-                        required: true,
-                        message: "Name Service is required",
-                      },
-                    ]}
-                  >
-                    <Input style={{ width: "75%" }} />
+                  <Form.Item name={["service1"]} noStyle>
+                    <Input style={{ width: "50%" }} disabled />
+                  </Form.Item>
+                  <Form.Item name={["service1", "service"]} noStyle>
+                    <Input style={{ width: "25%" }} disabled />
                   </Form.Item>
                 </Input.Group>
               </Form.Item>
-            </Col>
-
-            <Col span={24}>
-              <Form.List name={["service2"]}>
-                {(fields, { add, remove }, { errors }) => (
-                  <>
-                    {fields.map((field, name) => (
-                      <Form.Item required={false} key={field.key}>
-                        <Row align="middle">
-                          <Col span={22}>
-                            <Form.Item
-                              {...field}
-                              style={{
-                                display: "flex",
-                                marginBottom: 8,
-                              }}
-                            >
-                              <Input.Group compact>
-                                <Form.Item
-                                  name={[name, "port"]}
-                                  noStyle
-                                  rules={[
-                                    {
-                                      required: true,
-                                      message: "Port is required",
-                                    },
-                                  ]}
-                                >
-                                  <Select
-                                    placeholder="Select a port"
-                                    className="select-after"
-                                    style={{ width: "25%" }}
-                                  >
-                                    <Option value="public">Public</Option>
-                                    <Option value="private">Private</Option>
-                                  </Select>
-                                </Form.Item>
-                                <Form.Item
-                                  name={[name, "service"]}
-                                  noStyle
-                                  rules={[
-                                    {
-                                      required: true,
-                                      message: "Name Service is required",
-                                    },
-                                  ]}
-                                >
-                                  <Input style={{ width: "75%" }} />
-                                </Form.Item>
-                              </Input.Group>
-                            </Form.Item>
-                          </Col>
-                          <Col span={1} offset={1}>
-                            <PaperFail
-                              set="curved"
-                              className="remix-icon"
-                              primaryColor="red"
-                              onClick={() => remove(name)}
-                            />
-                          </Col>
-                        </Row>
-                      </Form.Item>
-                    ))}
-                    {fields.length < 2 ? (
-                      <Form.Item>
-                        <Button type="dashed" onClick={() => add()} block>
-                          Add Name Service
-                        </Button>
-                        <Form.ErrorList errors={errors} />
-                      </Form.Item>
-                    ) : null}
-                  </>
-                )}
-              </Form.List>
             </Col>
 
             <Divider />

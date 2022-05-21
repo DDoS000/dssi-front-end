@@ -16,8 +16,8 @@ const filters = [
     color: "presenting",
   },
   {
-    label: "Comming",
-    color: "comming",
+    label: "Coming",
+    color: "coming",
   },
 ];
 

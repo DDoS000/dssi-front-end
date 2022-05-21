@@ -8,7 +8,7 @@ import { User, Delete } from "react-iconly";
 import { RiErrorWarningLine } from "react-icons/ri";
 
 // Popconfirm
-function confirm(dataId) {
+function confirmdeleteUser(dataId) {
   store
     .dispatch(deleteUser(dataId))
     .then(() => {
@@ -78,7 +78,30 @@ export const columns = [
       <Popconfirm
         placement="topLeft"
         title="Are you sure to delete this users?"
-        onConfirm={() => confirm(dataIndex[0])}
+        onConfirm={() => confirmdeleteUser(dataIndex[0])}
+        okText="Yes"
+        cancelText="No"
+        icon={
+          <RiErrorWarningLine className="remix-icon hp-text-color-primary-1" />
+        }
+      >
+        <div className="hp-text-right">
+          <Delete
+            size={24}
+            className="hp-cursor-pointer hp-transition hp-hover-text-color-danger-1 hp-text-color-black-80"
+          />
+        </div>
+      </Popconfirm>
+    ),
+  },
+  {
+    dataIndex: "avatar",
+    width: "10%",
+    render: (dataIndex) => (
+      <Popconfirm
+        placement="topLeft"
+        title="Are you sure to delete this users?"
+        onConfirm={() => confirmdeleteUser(dataIndex[0])}
         okText="Yes"
         cancelText="No"
         icon={

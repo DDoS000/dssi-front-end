@@ -1,12 +1,18 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router";
-import { useSelector } from "react-redux";
+import { fetchRegistry } from "../../../redux/registry/registryActions";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 import Admin from "./Admin";
 import Student from "./Student";
 
 export default function Project() {
-  // const selectedProject = useSelector((state) => state.contact.selectedUser);
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(fetchRegistry());
+  }, []);
   return (
     <Switch>
       <Route path="/admin/manager/project">

@@ -69,7 +69,7 @@ export default function Profile() {
         <Row gutter={[32, 32]} justify="space-between">
           <Breadcrumbs breadCrumbParent="Pages" breadCrumbActive="Profile" />
 
-          <ActionButton />
+          {/* <ActionButton /> */}
         </Row>
       </Col>
 

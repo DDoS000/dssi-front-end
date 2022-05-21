@@ -21,10 +21,17 @@ const instance_Calendar = axios.create({
   },
 });
 
-// export default { instance, instance_AUTH, instance_Calendar };
+const instance_Registry = axios.create({
+  baseURL: process.env.REACT_APP_REGISTRY_SERVICE_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
 
 export {
   instance,
   instance_AUTH,
-  instance_Calendar
+  instance_Calendar,
+  instance_Registry
 }

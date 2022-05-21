@@ -8,7 +8,7 @@ import { User, Delete } from "react-iconly";
 import { RiErrorWarningLine } from "react-icons/ri";
 
 // Popconfirm
-function confirm(dataId) {
+function deletes(dataId) {
   store
     .dispatch(removeEvent(dataId))
     .then(() => {
@@ -52,7 +52,7 @@ export const columns = [
       <Popconfirm
         placement="topLeft"
         title="Are you sure to delete this Schedule?"
-        onConfirm={() => confirm(dataIndex)}
+        onConfirm={() => deletes(dataIndex)}
         okText="Yes"
         cancelText="No"
         icon={

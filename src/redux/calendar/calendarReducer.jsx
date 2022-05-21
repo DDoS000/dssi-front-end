@@ -1,7 +1,7 @@
 const initialState = {
   events: [],
   selectedEvent: {},
-  selectedCalendars: ["Complete", "Presenting", "Comming"],
+  selectedCalendars: ["Complete", "Presenting", "Coming"],
 };
 
 const calenderReducer = (state = initialState, action) => {
@@ -36,7 +36,7 @@ const calenderReducer = (state = initialState, action) => {
       const value = action.value;
       let selected = [];
       if (value === true) {
-        selected = ["Complete", "Presenting", "Comming"];
+        selected = ["Complete", "Presenting", "Coming"];
       } else {
         selected = [];
       }

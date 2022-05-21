@@ -48,7 +48,7 @@ export default function InfoProfile() {
     <div>
       <Modal
         forceRender
-        title="Contact Edit"
+        title="User Edit"
         width={416}
         centered
         visible={contactModalVisible}

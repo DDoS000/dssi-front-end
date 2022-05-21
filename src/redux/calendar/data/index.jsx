@@ -55,7 +55,7 @@ const data = {
       start: new Date(date.getFullYear(), date.getMonth() + 1, -9),
       end: new Date(date.getFullYear(), date.getMonth() + 1, -7),
       extendedProps: {
-        calendar: "Comming",
+        calendar: "Coming",
       },
     },
   ],

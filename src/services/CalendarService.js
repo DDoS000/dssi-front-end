@@ -10,11 +10,11 @@ class CalendarService {
     }
 
     AddSchedule(detail) {
-
+        return api.post("/api/v1/add_queue", { detail })
     }
 
     UpdateSchedule(detail) {
-        
+
     }
 }
 

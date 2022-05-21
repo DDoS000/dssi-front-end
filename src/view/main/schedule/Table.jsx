@@ -9,10 +9,11 @@ import { Row, Col, Table, Card } from "antd";
 import { columns } from "./columns";
 import BreadCrumbs from "../../../layout/components/content/breadcrumbs";
 
-export default function UsersList() {
+export default function ScheduleList() {
   // Redux
   const dispatch = useDispatch();
   const store = useSelector((state) => state.calendar);
+  const user = useSelector((state) => state.auth.user);
 
   // Get Data
   useEffect(() => {
@@ -22,14 +23,27 @@ export default function UsersList() {
   const data = [];
 
   for (let i = 0; i < store.events.length; i++) {
-    data.push({
-      key: i,
-      id: store.events[i].id,
-      title: store.events[i].title,
-      start: store.events[i].start,
-      end: store.events[i].end,
-      PJ_UUID: store.events[i].PJ_UUID,
-    });
+    if (user.roles[0] === "ROLE_STUDENT") {
+      if (store.events[i].created_by === user.id) {
+        data.push({
+          key: i,
+          id: store.events[i].id,
+          title: store.events[i].title,
+          start: store.events[i].start,
+          end: store.events[i].end,
+          PJ_UUID: store.events[i].PJ_UUID,
+        });
+      }
+    } else {
+      data.push({
+        key: i,
+        id: store.events[i].id,
+        title: store.events[i].title,
+        start: store.events[i].start,
+        end: store.events[i].end,
+        PJ_UUID: store.events[i].PJ_UUID,
+      });
+    }
   }
 
   return (

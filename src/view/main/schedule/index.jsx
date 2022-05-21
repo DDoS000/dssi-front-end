@@ -9,6 +9,9 @@ export default function schedule() {
       <Route exact path="/admin/main/schedule">
         <Table />
       </Route>
+      <Route exact path="/student/main/schedule">
+        <Table />
+      </Route>
     </Switch>
   );
 }

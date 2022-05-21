@@ -380,6 +380,11 @@ const PagesRoutes = [
     layout: "VerticalLayout",
   },
   {
+    path: "/student/main/schedule",
+    component: lazy(() => import("../../view/main/schedule")),
+    layout: "VerticalLayout",
+  },
+  {
     path: "/student/main/project",
     component: lazy(() => import("../../view/manager/project")),
     layout: "VerticalLayout",

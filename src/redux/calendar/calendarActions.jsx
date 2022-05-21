@@ -15,7 +15,7 @@ export const fetchEvents = (calendars) => {
 // Add Event
 export const addEvent = (event) => {
   return (dispatch, getState) => {
-    instance.post("/apps/calendar/add-event", { event }).then(() => {
+    CalendarService.AddSchedule(event).then(() => {
       dispatch({
         type: "ADD_EVENT",
       });

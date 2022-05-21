@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 
 import Select, { components } from "react-select";
 import "flatpickr/dist/themes/light.css";
@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { RiCloseFill } from "react-icons/ri";
 import { DatePicker, Button, Input, Form, Modal, Badge, Row, Col } from "antd";
 import moment from "moment";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchRegistry } from "../../../redux/registry/registryActions";
 
 export const isObjEmpty = (obj) => Object.keys(obj).length === 0;
 
@@ -35,18 +37,47 @@ const AddEventSidebar = (props) => {
   const [allDay, setAllDay] = useState(false);
   const [endPicker, setEndPicker] = useState();
   const [startPicker, setStartPicker] = useState();
-  const [value, setValue] = useState([{ value: "Comming", label: "Comming" }]);
+  const [value, setValue] = useState([{ value: "", label: "" }]);
 
-  const options = [
-    { value: "Complete", label: "Complete", badge: "#00F7BF" },
-    { value: "Presenting", label: "Presenting", badge: "#FFC700" },
-    { value: "Comming", label: "Comming", badge: "#FF0022" },
-  ];
+  // const options = [
+  //   { value: "Complete", label: "Complete", badge: "#00F7BF" },
+  //   { value: "Presenting", label: "Presenting", badge: "#FFC700" },
+  //   { value: "Coming", label: "Coming", badge: "#FF0022" },
+  // ];
+
+  useEffect(() => {
+    dispatch(fetchRegistry());
+  }, []);
+
+  const registry = useSelector((state) => state.registry);
+  const user = useSelector((state) => state.auth.user);
+
+  const options = [];
+
+  for (let i = 0; i < registry.data.length; i++) {
+    if (user.roles[0] === "ROLE_STUDENT") {
+      if (registry.data[i].created_by === user.id) {
+        if (registry.data[i].status === "SUCCESS") {
+          options.push({
+            label: registry.data[i].PJ_NAME,
+            value: registry.data[i].PJ_UUID,
+          });
+        }
+      }
+    } else {
+      if (registry.data[i].status === "SUCCESS") {
+        options.push({
+          label: registry.data[i].PJ_NAME,
+          value: registry.data[i].PJ_UUID,
+        });
+      }
+    }
+  }
 
   const OptionComponent = ({ data, ...props }) => {
     return (
       <components.Option {...props}>
-        <Badge color={data.badge} />
+        {/* <Badge color={data.badge} /> */}
         {data.label}
       </components.Option>
     );
@@ -76,7 +107,7 @@ const AddEventSidebar = (props) => {
     dispatch(selectEvent({}));
     setTitle("");
     setDesc("");
-    setValue([{ value: "Comming", label: "Comming" }]);
+    setValue([{ value: "", label: "" }]);
     setStartPicker();
     setEndPicker();
     setIsModalVisible(false);
@@ -295,7 +326,6 @@ const AddEventSidebar = (props) => {
           label="From :"
           rules={[{ required: true, message: "This is required!" }]}
         >
-
           <DatePicker
             required
             id="startDate"
@@ -308,7 +338,6 @@ const AddEventSidebar = (props) => {
             disabledDate={(current) => {
               return current && current < moment().add(-1, "day");
             }}
-            
           />
         </Form.Item>
 
